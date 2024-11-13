@@ -1,6 +1,6 @@
-# flutter_application_4
+# investsync_website_project
 
-A new Flutter project.
+A new Flutter Web Project.
 
 ## Getting Started
 
