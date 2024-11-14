@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
             title: {
               // HorizontalPos is relative to the anchor point
               'InvestSync': {'Size': 81, 'HorizontalPos': 100, 'VerticalPos': 88},
-              'Invest, Innovate, Inspire': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 188},
+              'Invest, Innovate, Inspire': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 198},
             },
           ),
           
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
               title: 'WHO WE ARE',
               description: [
                 'InvestSync is the premier investment & networking organization for students of The Chinese University of Hong Kong, Shenzhen.',
-                'InvestSync broadens students’ investment experience, extends career opportunities, and encourages social networking among members.',
+                'InvestSync broadens students’ investment experience, extends career opportunities, and encourages social networking among members. In the Spring of 2024, we launched an investment portfolio with the Student Analyst Team.',
                 'InvestSync equips top students with valuable real-life investment experiences as well as leadership and portfolio management opportunities, alumni connections, internships, and career development.'
               ],
             ),
@@ -50,9 +50,9 @@ class HomePage extends StatelessWidget {
             scrollController: scrollController,
             parallaxFactor: parallaxFactor,
             title: {
-              "CUHK(SZ)'s Premiere International": {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 100},
-              'Investment & Networking': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 150},
-              'Organization': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 200},
+              "CUHK(SZ)'s Premiere International": {'Size': 42, 'HorizontalPos': 100, 'VerticalPos': 88},
+              'Investment & Networking': {'Size': 42, 'HorizontalPos': 100, 'VerticalPos': 153},
+              'Organization': {'Size': 42, 'HorizontalPos': 100, 'VerticalPos': 218},
             },
             anchor: 'right',
           ),
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
             child: DescriptionCard(
               title: 'OUR MISSION',
               description: [
-                'At the heart of InvestSync lies a commitment to deepening our members’ understanding of investment strategies and market dynamics. We strive to blend academic theories with practical application.',
+                'At the heart of InvestSync lies a commitment to deepening our members’ understanding of investment strategies and market dynamics. We strive to blend academic theories with practical application, offering a hands-on approach to learning about the stock market, portfolio management, and financial analysis.',
                 'Our philosophy centers around three pillars: Education, Experience, and Empowerment. We believe that by providing an environment where students can gain real-life trading experience and leadership opportunities, we can shape the future leaders of the finance industry.',
                 'Join us in shaping your future in finance and investment with InvestSync at CUHKSZ.'
               ],

@@ -19,7 +19,7 @@ class ParallaxImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 680.0,
+      expandedHeight: 900,
       pinned: false,
       floating: false,
       flexibleSpace: FlexibleSpaceBar(
@@ -42,7 +42,7 @@ class ParallaxImage extends StatelessWidget {
                 right: anchor == 'right' ? horizontalPos : null,
                 top: verticalPos + parallaxOffset, // Add parallax effect to text position
                 child: Text(
-                  text,
+                  text.toUpperCase(),
                   style: TextStyle(fontSize: fontSize, color: Colors.white),
                 ),
               ));
