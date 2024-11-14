@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:investsyncwebsite/common/widgets/topnav.dart'; // Import the navigation bar
 import 'package:investsyncwebsite/common/widgets/article_card.dart'; // Import the ArticleCard widget
 import 'package:investsyncwebsite/common/widgets/botnav.dart'; // Import the BotNav widget
-import 'package:investsyncwebsite/data/article_data.dart'; // Import the articles data
-import 'package:investsyncwebsite/pages/article_detail_page.dart'; // Import the ArticleDetailPage
+import 'package:investsyncwebsite/data/newsletter_data.dart'; // Import the articles data
+import 'package:investsyncwebsite/pages/newsletter_detail_page.dart'; // Import the ArticleDetailPage
 
 class NewsletterPage extends StatelessWidget {
   @override

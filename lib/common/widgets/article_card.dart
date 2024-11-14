@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:investsyncwebsite/data/article_data.dart';
+import 'package:investsyncwebsite/data/newsletter_data.dart';
 
 class ArticleCard extends StatelessWidget {
   final Article article;
