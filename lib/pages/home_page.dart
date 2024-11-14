@@ -13,7 +13,8 @@ class HomePage extends StatelessWidget {
     const double parallaxFactor = 0.5;
 
     return Scaffold(
-      backgroundColor: Colors.white, // Set Scaffold background color to white
+      backgroundColor:
+          Colors.grey[200], // Set Scaffold background color to grey
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(110.0), // Custom navigation bar height
         child: CustomNavigationBar(),
