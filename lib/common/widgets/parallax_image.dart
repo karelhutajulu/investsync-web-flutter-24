@@ -103,11 +103,9 @@ class ParallaxImage extends StatelessWidget {
               titleWidgets.add(Positioned(
                 left: anchor == 'left' ? horizontalPos : null,
                 right: anchor == 'right' ? horizontalPos : null,
-                top: verticalPos + parallaxOffset, // Add parallax effect to text position
-                child: Text(
-                  text,
-                  style: TextStyle(fontSize: fontSize, color: Colors.white),
-                ),
+                top: verticalPos +
+                    parallaxOffset, // Add parallax effect to text position
+                child: textWidget,
               ));
             });
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:investsyncwebsite/common/widgets/description_card.dart';
-import 'package:investsyncwebsite/common/widgets/navigation_bar.dart';
+import 'package:investsyncwebsite/common/widgets/topnav.dart';
 import 'package:investsyncwebsite/common/widgets/botnav.dart';
 import 'package:investsyncwebsite/common/widgets/parallax_image.dart';
 
@@ -13,6 +13,8 @@ class HomePage extends StatelessWidget {
     const double parallaxFactor = 0.5;
 
     return Scaffold(
+      backgroundColor:
+          Colors.grey[200], // Set Scaffold background color to grey
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(110.0), // Custom navigation bar height
         child: CustomNavigationBar(),
@@ -26,19 +28,26 @@ class HomePage extends StatelessWidget {
             scrollController: scrollController,
             parallaxFactor: parallaxFactor,
             title: {
-              // HorizontalPos is relative to the anchor point
-              'InvestSync': {'Size': 81, 'HorizontalPos': 100, 'VerticalPos': 88},
-              'Invest, Innovate, Inspire': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 188},
+              'INVESTSYNC': {
+                'Size': 68,
+                'HorizontalPos': 94,
+                'VerticalPos': 20
+              },
+              'INVEST, INNOVATE, INSPIRE': {
+                'Size': 26,
+                'HorizontalPos': 100,
+                'VerticalPos': 150
+              },
             },
           ),
-          
+
           // Description Card - Who We Are
           SliverToBoxAdapter(
             child: DescriptionCard(
               title: 'WHO WE ARE',
               description: [
                 'InvestSync is the premier investment & networking organization for students of The Chinese University of Hong Kong, Shenzhen.',
-                'InvestSync broadens students’ investment experience, extends career opportunities, and encourages social networking among members.',
+                'InvestSync broadens students’ investment experience, extends career opportunities, and encourages social networking among members. In the Spring of 2024, we launched an investment portfolio with the Student Analyst Team.',
                 'InvestSync equips top students with valuable real-life investment experiences as well as leadership and portfolio management opportunities, alumni connections, internships, and career development.'
               ],
             ),
@@ -50,29 +59,44 @@ class HomePage extends StatelessWidget {
             scrollController: scrollController,
             parallaxFactor: parallaxFactor,
             title: {
-              "CUHK(SZ)'s Premiere International": {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 100},
-              'Investment & Networking': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 150},
-              'Organization': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 200},
+              "CUHK(SZ)'s Premiere International": {
+                'Size': 36,
+                'HorizontalPos': 100,
+                'VerticalPos': 100
+              },
+              'Investment & Networking': {
+                'Size': 36,
+                'HorizontalPos': 100,
+                'VerticalPos': 150
+              },
+              'Organization': {
+                'Size': 36,
+                'HorizontalPos': 100,
+                'VerticalPos': 200
+              },
             },
             anchor: 'right',
           ),
-          
-          // Description Card - Our Mission
+
+          // Description Card - Our Mission with grey background
           SliverToBoxAdapter(
-            child: DescriptionCard(
-              title: 'OUR MISSION',
-              description: [
-                'At the heart of InvestSync lies a commitment to deepening our members’ understanding of investment strategies and market dynamics. We strive to blend academic theories with practical application.',
-                'Our philosophy centers around three pillars: Education, Experience, and Empowerment. We believe that by providing an environment where students can gain real-life trading experience and leadership opportunities, we can shape the future leaders of the finance industry.',
-                'Join us in shaping your future in finance and investment with InvestSync at CUHKSZ.'
-              ],
+            child: Container(
+              color: Colors.grey[200], // Set background color to light grey
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0), // Add padding
+              child: DescriptionCard(
+                title: 'OUR MISSION',
+                description: [
+                  'At the heart of InvestSync lies a commitment to deepening our members’ understanding of investment strategies and market dynamics. We strive to blend academic theories with practical application.',
+                  'Our philosophy centers around three pillars: Education, Experience, and Empowerment. We believe that by providing an environment where students can gain real-life trading experience and leadership opportunities, we can shape the future leaders of the finance industry.',
+                  'Join us in shaping your future in finance and investment with InvestSync at CUHKSZ.'
+                ],
+              ),
             ),
           ),
 
           // Bottom Navigation Bar
-          SliverToBoxAdapter(
-            child: BotNav()
-          )
+          SliverToBoxAdapter(child: BotNav()),
         ],
       ),
     );
