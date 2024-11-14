@@ -1,99 +1,78 @@
 import 'package:flutter/material.dart';
 import 'package:investsyncwebsite/common/widgets/description_card.dart';
-import 'package:investsyncwebsite/common/widgets/navigation_bar.dart'; // Import the CustomNavigationBar
-import 'package:investsyncwebsite/common/widgets/botnav.dart'; // Import the BotNav
+import 'package:investsyncwebsite/common/widgets/navigation_bar.dart';
+import 'package:investsyncwebsite/common/widgets/botnav.dart';
+import 'package:investsyncwebsite/common/widgets/parallax_image.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _scrollController = ScrollController();
+    final ScrollController scrollController = ScrollController();
+
+    // Parallax factor to adjust speed
+    const double parallaxFactor = 0.5;
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(
-            110.0), // Set the height of your custom navigation bar
+        preferredSize: Size.fromHeight(110.0), // Custom navigation bar height
         child: CustomNavigationBar(),
       ),
-
       body: CustomScrollView(
-        controller: _scrollController,
+        controller: scrollController,
         slivers: [
-          // SliverAppBar with a parallax effect
-          SliverAppBar(
-            expandedHeight: 680,
-            pinned: false,
-            floating: false,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text("Parallax Example"),
-              background: Builder(
-                builder: (context) {
-                  // Adjust the image position as you scroll
-                  double scrollOffset = _scrollController.hasClients
-                      ? _scrollController.offset
-                      : 0;
-                  double parallaxOffset =
-                      scrollOffset * 0.3; // Change 0.3 for different speed
-
-                  return Transform.translate(
-                    offset:
-                        Offset(0, parallaxOffset), // Apply parallax translation
-                    child: Image.network(
-                      'assets/images/photos/golden_bull.png', // Replace with your image URL
-                      fit: BoxFit.cover,
-                    ),
-                  );
-                },
-              ),
+          // First SliverAppBar with Parallax effect
+          ParallaxImage(
+            imageUrl: 'assets/images/photos/golden_bull.png',
+            scrollController: scrollController,
+            parallaxFactor: parallaxFactor,
+            title: {
+              // HorizontalPos is relative to the anchor point
+              'InvestSync': {'Size': 81, 'HorizontalPos': 100, 'VerticalPos': 88},
+              'Invest, Innovate, Inspire': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 188},
+            },
+          ),
+          
+          // Description Card - Who We Are
+          SliverToBoxAdapter(
+            child: DescriptionCard(
+              title: 'WHO WE ARE',
+              description: [
+                'InvestSync is the premier investment & networking organization for students of The Chinese University of Hong Kong, Shenzhen.',
+                'InvestSync broadens students’ investment experience, extends career opportunities, and encourages social networking among members.',
+                'InvestSync equips top students with valuable real-life investment experiences as well as leadership and portfolio management opportunities, alumni connections, internships, and career development.'
+              ],
             ),
           ),
 
-          // Some content to scroll
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => ListTile(
-                title: Text("ANYTHING")
-                
-              ),
-              childCount: 1, // Number of items
+          // Second SliverAppBar with Parallax effect
+          ParallaxImage(
+            imageUrl: 'assets/images/photos/shenzhen_city.jpg',
+            scrollController: scrollController,
+            parallaxFactor: parallaxFactor,
+            title: {
+              "CUHK(SZ)'s Premiere International": {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 100},
+              'Investment & Networking': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 150},
+              'Organization': {'Size': 36, 'HorizontalPos': 100, 'VerticalPos': 200},
+            },
+            anchor: 'right',
+          ),
+          
+          // Description Card - Our Mission
+          SliverToBoxAdapter(
+            child: DescriptionCard(
+              title: 'OUR MISSION',
+              description: [
+                'At the heart of InvestSync lies a commitment to deepening our members’ understanding of investment strategies and market dynamics. We strive to blend academic theories with practical application.',
+                'Our philosophy centers around three pillars: Education, Experience, and Empowerment. We believe that by providing an environment where students can gain real-life trading experience and leadership opportunities, we can shape the future leaders of the finance industry.',
+                'Join us in shaping your future in finance and investment with InvestSync at CUHKSZ.'
+              ],
             ),
           ),
 
-          SliverAppBar(
-            expandedHeight: 300.0,
-            pinned: false,
-            floating: false,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text("Parallax Example"),
-              background: Builder(
-                builder: (context) {
-                  // Adjust the image position as you scroll
-                  double scrollOffset = _scrollController.hasClients
-                      ? _scrollController.offset
-                      : 0;
-                  double parallaxOffset =
-                      scrollOffset * 0.3; // Change 0.3 for different speed
-
-                  return Transform.translate(
-                    offset:
-                        Offset(0, parallaxOffset), // Apply parallax translation
-                    child: Image.network(
-                      'https://static.wixstatic.com/media/2e6432_bec5502d7f66439b98caac67f7d27fcc~mv2.png/v1/fill/w_953,h_934,al_c,q_90,enc_auto/2e6432_bec5502d7f66439b98caac67f7d27fcc~mv2.png', // Replace with your image URL
-                      fit: BoxFit.cover,
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => ListTile(
-                title: Text('Item #$index'),
-              ),
-              childCount: 2, // Number of items
-            ),
-          ),
+          // Bottom Navigation Bar
+          SliverToBoxAdapter(
+            child: BotNav()
+          )
         ],
       ),
     );
