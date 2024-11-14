@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:investsyncwebsite/pages/homepage.dart'; // Import HomePage
-import 'package:investsyncwebsite/pages/newsletterpage.dart';
-import 'package:investsyncwebsite/pages/teampage.dart'; // Import TeamPage
-import 'package:investsyncwebsite/pages/portfoliopage.dart'; // Import PortfolioPage
+import 'package:investsyncwebsite/pages/home_page.dart'; // Import HomePage
+import 'package:investsyncwebsite/pages/newsletter_page.dart';
+import 'package:investsyncwebsite/pages/team_page.dart'; // Import TeamPage
+import 'package:investsyncwebsite/pages/portfolio_page.dart'; // Import PortfolioPage
 import 'package:url_launcher/url_launcher.dart'; // Import url_launcher
 
 class CustomNavigationBar extends StatelessWidget {
@@ -98,7 +98,10 @@ class NavBarItem extends StatelessWidget {
           title,
           style: TextStyle(
             color: Colors.black, // Changed to black for visibility
-            fontSize: 26,
+            fontSize: 30,
+            fontFamily: 'Kepler', // Set font family to Cormorant
+            fontWeight: FontWeight.w600, // Medium weight for Cormorant
+            letterSpacing: -0.5, // Reduced letter spacing
           ),
         ),
       ),
@@ -128,6 +131,9 @@ class JoinButton extends StatelessWidget {
         style: TextStyle(
           color: Colors.white, // Text color
           fontSize: 26, // Text size
+          fontFamily: 'Kepler', // Set font family to Cormorant
+          fontWeight: FontWeight.w600, // Medium weight for Cormorant
+          letterSpacing: -0.5, // Reduced letter spacing
         ),
       ),
     );
