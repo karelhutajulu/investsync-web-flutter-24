@@ -67,10 +67,11 @@ class ArticleDetailPage extends StatelessWidget {
 
                 // Title below the metadata
                 Text(
-                  article.title,
+                  article.title.toUpperCase(),
                   style: TextStyle(
                     fontSize: 36,
-                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Cormorant',
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
                 SizedBox(height: 34),

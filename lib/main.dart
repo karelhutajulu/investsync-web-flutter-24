@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner:
+          false, // Set this to false to remove the debug banner
       home: HomePage(), // Set your homepage here
     );
   }
