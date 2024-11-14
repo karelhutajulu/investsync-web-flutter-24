@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:investsyncwebsite/common/widgets/navigation_bar.dart'; // Import the CustomNavigationBar
-import 'package:investsyncwebsite/common/widgets/botnav.dart'; // Import the BotNav widget
+import 'package:investsyncwebsite/common/widgets/topnav.dart'; // Import the CustomNavigationBar
+import 'package:investsyncwebsite/common/widgets/botnav.dart'; // Import the BotNav
 
-class PortfolioPage extends StatelessWidget {
+class TeamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
