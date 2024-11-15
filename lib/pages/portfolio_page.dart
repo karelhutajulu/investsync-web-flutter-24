@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:investsyncwebsite/common/widgets/navigation_bar.dart'; // Import the CustomNavigationBar
+import 'package:investsyncwebsite/common/widgets/topnav.dart'; // Import the CustomNavigationBar
 import 'package:investsyncwebsite/common/widgets/botnav.dart'; // Import the BotNav widget
 
 class PortfolioPage extends StatelessWidget {

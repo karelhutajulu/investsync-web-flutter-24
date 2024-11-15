@@ -86,3 +86,16 @@ flutter:
           weight: 600
         - asset: assets/fonts/cormorant/Cormorant-Bold.ttf
           weight: 800
+
+    - family: Kepler
+      fonts:
+        - asset: assets/fonts/kepler-std/KeplerStd-BoldScnDisp.ttf
+          weight: 800
+        - asset: assets/fonts/kepler-std/KeplerStd-BoldScnItDisp.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/kepler-std/KeplerStdMedium.ttf
+          weight: 600
+        - asset: assets/fonts/kepler-std/KeplerStdScnCapt.ttf
+          weight: 700
+          
