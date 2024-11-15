@@ -37,6 +37,7 @@ class TeamPage extends StatelessWidget {
                         color: Colors.white,
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'Cormorant',
                         shadows: [
                           Shadow(
                             offset: Offset(2, 2),
@@ -59,10 +60,10 @@ class TeamPage extends StatelessWidget {
                     "Board of Directors",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 36,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
-                      fontFamily: 'Serif', // Specify font
+                      fontFamily: 'Cormorant', // Specify font
                     ),
                   ),
                   Container(
@@ -86,17 +87,17 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "Hoyun Joseph Jung",
                         role: "President",
-                        imagePath: "assets/images/photos/Artboard 1.png",
+                        imagePath: "assets/images/photos/HJJ.png",
                       ),
                       TeamMemberCard(
                         name: "Caitlyn Kay",
                         role: "Co-President",
-                        imagePath: "assets/images/photos/Artboard 2.png",
+                        imagePath: "assets/images/photos/CK.png",
                       ),
                       TeamMemberCard(
                         name: "William A. Tanex",
                         role: "Vice President",
-                        imagePath: "assets/images/photos/Artboard 3.png",
+                        imagePath: "assets/images/photos/WAT.png",
                       ),
                     ],
                   ),
@@ -108,18 +109,16 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "Bhurida Chatlekhaivanich",
                         role: "Chief Finance Officer",
-                        imagePath: "assets/images/photos/Artboard 7.png",
+                        imagePath: "assets/images/photos/BC.png",
                       ),
                       TeamMemberCard(
                         name: "Nikita Tanaya",
                         role: "Chief Technology Officer",
-                        imagePath: "assets/images/photos/Artboard 4.png",
+                        imagePath: "assets/images/photos/NT.png",
                       ),
                       TeamMemberCard(
                         name: "TBA",
                         role: "CMO",
-                        imagePath: "assets/images/photos/63699.png",
-                        isPlaceholder: true,
                       ),
                     ],
                   ),
@@ -131,18 +130,16 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "Maire Baukop Hellem",
                         role: "Chief HR Officer",
-                        imagePath: "assets/images/photos/Artboard 10.png",
+                        imagePath: "assets/images/photos/MBH.png",
                       ),
                       TeamMemberCard(
                         name: "TBA",
                         role: "Chief Editor",
-                        imagePath: "assets/images/photos/63699.png",
                       ),
                       TeamMemberCard(
                         name: "Junjira Adisakdechakul",
                         role: "External HR Manager",
-                        imagePath: "assets/images/photos/Artboard 11.png",
-                        isPlaceholder: true,
+                        imagePath: "assets/images/photos/JA.png",
                       ),
                     ],
                   ),
@@ -154,18 +151,17 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "Chrisantha Ongko",
                         role: "Internal HR Manager",
-                        imagePath: "assets/images/photos/Artboard 12.png",
+                        imagePath: "assets/images/photos/CO.png",
                       ),
                       TeamMemberCard(
                         name: "Vincent Ang",
                         role: "Secretary",
-                        imagePath: "assets/images/photos/Artboard 17.png",
+                        imagePath: "assets/images/photos/VA.png",
                       ),
                       TeamMemberCard(
                         name: "Olivia D. Christanto",
                         role: "Secretary",
-                        imagePath: "assets/images/photos/Artboard 18.png",
-                        isPlaceholder: true,
+                        imagePath: "assets/images/photos/ODCpng",
                       ),
                     ],
                   ),
@@ -177,18 +173,16 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "Cellinie",
                         role: "Market Analyst",
-                        imagePath: "assets/images/photos/63699.png",
                       ),
                       TeamMemberCard(
                         name: "Annabel Leonardi",
                         role: "Market Analyst",
-                        imagePath: "assets/images/photos/Artboard 15.png",
+                        imagePath: "assets/images/photos/AL.png",
                       ),
                       TeamMemberCard(
                         name: "Angelina C. Handonjo",
                         role: "Market Analyst",
-                        imagePath: "assets/images/photos/Artboard 16.png",
-                        isPlaceholder: true,
+                        imagePath: "assets/images/photos/ACH.png",
                       ),
                     ],
                   ),
@@ -200,18 +194,17 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "Bryan Jonathan",
                         role: "Web Developer",
-                        imagePath: "assets/images/photos/Artboard 5.png",
+                        imagePath: "assets/images/photos/BJ.png",
                       ),
                       TeamMemberCard(
                         name: "Matthew Kwok",
                         role: "Web Developer",
-                        imagePath: "assets/images/photos/Artboard 6.png",
+                        imagePath: "assets/images/photos/MK.png",
                       ),
                       TeamMemberCard(
                         name: "Chananan Watsooksunti",
                         role: "Treasury",
-                        imagePath: "assets/images/photos/Artboard 8.png",
-                        isPlaceholder: true,
+                        imagePath: "assets/images/photos/CW.png",
                       ),
                     ],
                   ),
@@ -223,18 +216,17 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "Bryan Budiarto Sutanto",
                         role: "Treasury",
-                        imagePath: "assets/images/photos/Artboard 9.png",
+                        imagePath: "assets/images/photos/BBS.png",
                       ),
                       TeamMemberCard(
                         name: "Eugenia J. Budiono",
                         role: "Publicist",
-                        imagePath: "assets/images/photos/Artboard 20.png",
-                        isPlaceholder: true,
+                        imagePath: "assets/images/photos/EJB.png",
                       ),
                       TeamMemberCard(
                         name: "Angelica P. T. Tuerah",
                         role: "Publicist",
-                        imagePath: "assets/images/photos/Artboard 19.png",
+                        imagePath: "assets/images/photos/APTT.png",
                       ),
                     ],
                   ),
@@ -278,12 +270,10 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "William H. Loe",
                         role: "Senior Analyst",
-                        imagePath: "assets/images/photos/63699.png",
                       ),
                       TeamMemberCard(
                         name: "Reinard T.J. Nathaniel",
                         role: "Senior Analyst",
-                        imagePath: "assets/images/photos/63699.png",
                       ),
                     ],
                   ),
@@ -304,13 +294,10 @@ class TeamMemberCard extends StatelessWidget {
   final String name;
   final String role;
   final String imagePath;
-  final bool isPlaceholder;
-
   const TeamMemberCard({
     required this.name,
     required this.role,
-    required this.imagePath,
-    this.isPlaceholder = false,
+    this.imagePath = 'assets/images/photos/placeholder.png', // Default placeholder image if no imagePath is specified in the widget call
   });
 
   @override
@@ -327,9 +314,7 @@ class TeamMemberCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8), // Slightly rounded corners
               image: DecorationImage(
-                image: isPlaceholder
-                    ? AssetImage("assets/placeholder.png") // Placeholder image path
-                    : AssetImage(imagePath),
+                image: AssetImage(imagePath),
                 fit: BoxFit.cover,
               ),
               color: Colors.grey[200],
@@ -343,7 +328,7 @@ class TeamMemberCard extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.bold,
               color: Colors.black87,
-              fontFamily: 'Serif', // Set the desired font
+              fontFamily: 'Cormorant', // Set the desired font
             ),
           ),
           // Role Text (left-aligned)
@@ -353,7 +338,7 @@ class TeamMemberCard extends StatelessWidget {
               fontSize: 13,
               color: Colors.blue,
               fontWeight: FontWeight.w500,
-              fontFamily: 'Serif', // Set the desired font
+              fontFamily: 'Cormorant', // Set the desired font
             ),
           ),
           SizedBox(height: 8),
