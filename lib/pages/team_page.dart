@@ -20,7 +20,7 @@ class TeamPage extends StatelessWidget {
                 // Background Image
                 Container(
                   width: double.infinity,
-                  height: 200,
+                  height: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/images/photos/golden_bull.png"), // Path to your background image
@@ -32,10 +32,10 @@ class TeamPage extends StatelessWidget {
                 Positioned.fill(
                   child: Center(
                     child: Text(
-                      "Meet the Team",
+                      "MEET THE TEAM",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 28,
+                        fontSize: 64,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Cormorant',
                         shadows: [
@@ -53,14 +53,14 @@ class TeamPage extends StatelessWidget {
             ),
             // Board of Directors Title
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
+              padding: const EdgeInsets.symmetric(vertical: 48.0),
               child: Column(
                 children: [
                   Text(
-                    "Board of Directors",
+                    "BOARD OF DIRECTORS",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 36,
+                      fontSize: 49,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
                       fontFamily: 'Cormorant', // Specify font
@@ -68,9 +68,9 @@ class TeamPage extends StatelessWidget {
                   ),
                   Container(
                     height: 2,
-                    width: 100,
+                    width: 30,
                     color: Colors.black87,
-                    margin: EdgeInsets.only(top: 4),
+                    margin: EdgeInsets.only(top: 6),
                   ),
                 ],
               ),
@@ -101,7 +101,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 60),
                   // Second Row of team members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -122,7 +122,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 60),
                   // Third Row of team members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -143,7 +143,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 60),
                   // Fourth Row of Team Members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -161,11 +161,11 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "Olivia D. Christanto",
                         role: "Secretary",
-                        imagePath: "assets/images/photos/ODCpng",
+                        imagePath: "assets/images/photos/ODC.png",
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 60),
                   // Fifth Row of Team Members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -186,7 +186,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 60),
                   // Sixth Row of Team Members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -208,7 +208,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 60),
                   // Seventh Row of Team Members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -236,24 +236,24 @@ class TeamPage extends StatelessWidget {
             ),
             // Investment Team Title
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
+              padding: const EdgeInsets.symmetric(vertical: 48.0),
               child: Column(
                 children: [
                   Text(
-                    "Investment Team",
+                    "INVESTMENT TEAM",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 49,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
-                      fontFamily: 'Serif', // Specify font
+                      fontFamily: 'Cormorant', // Specify font
                     ),
                   ),
                   Container(
                     height: 2,
-                    width: 100,
+                    width: 30,
                     color: Colors.black87,
-                    margin: EdgeInsets.only(top: 4),
+                    margin: EdgeInsets.only(top: 6),
                   ),
                 ],
               ),
@@ -281,7 +281,7 @@ class TeamPage extends StatelessWidget {
               ),
             ),
             // Bottom Navigation Bar - appears only at the end
-            SizedBox(height: 30),
+            SizedBox(height: 60),
             BotNav(), // This will be at the end of the page
           ],
         ),
@@ -303,14 +303,14 @@ class TeamMemberCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150, // Set fixed width for consistent sizing
+      width: 375, // Set fixed width for consistent sizing
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start, // Left-align content
         children: [
           // Square Image Container
           Container(
-            width: 150,
-            height: 200,
+            width: 375,
+            height: 400,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8), // Slightly rounded corners
               image: DecorationImage(
@@ -325,8 +325,8 @@ class TeamMemberCard extends StatelessWidget {
           Text(
             name.toUpperCase(),
             style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              fontWeight: FontWeight.w800,
               color: Colors.black87,
               fontFamily: 'Cormorant', // Set the desired font
             ),
@@ -335,9 +335,9 @@ class TeamMemberCard extends StatelessWidget {
           Text(
             role,
             style: TextStyle(
-              fontSize: 13,
-              color: Colors.blue,
-              fontWeight: FontWeight.w500,
+              fontSize: 22,
+              color: Color.fromRGBO(11, 71, 222, 1),
+              fontWeight: FontWeight.w900,
               fontFamily: 'Cormorant', // Set the desired font
             ),
           ),
@@ -345,9 +345,9 @@ class TeamMemberCard extends StatelessWidget {
           // Icons Row (Email, LinkedIn) left-aligned
           Row(
             children: [
-              Icon(Icons.email, size: 20, color: Colors.black87),
+              Icon(Icons.email, size: 30, color: Colors.black87),
               SizedBox(width: 8),
-              Icon(Icons.link, size: 20, color: Colors.black87),
+              Icon(Icons.link, size: 30, color: Colors.black87),
             ],
           ),
         ],
