@@ -23,7 +23,7 @@ class BotNav extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              _IconButton(
+              IconButton(
                 icon: FontAwesomeIcons.linkedin,
                 onTap: () async {
                   const url = 'https://www.linkedin.com/company/investsync/';
@@ -35,7 +35,7 @@ class BotNav extends StatelessWidget {
                 },
               ),
               SizedBox(width: 30),
-              _IconButton(
+              IconButton(
                 icon: FontAwesomeIcons.envelope,
                 onTap: () async {
                   final emailUrl =
@@ -48,7 +48,7 @@ class BotNav extends StatelessWidget {
                 },
               ),
               SizedBox(width: 30),
-              _IconButton(
+              IconButton(
                 icon: FontAwesomeIcons.instagram,
                 onTap: () {
                   // Add Instagram link or action here
@@ -62,22 +62,33 @@ class BotNav extends StatelessWidget {
   }
 }
 
-// Custom widget for an icon button
-class _IconButton extends StatelessWidget {
+class IconButton extends StatefulWidget {
   final IconData icon;
   final VoidCallback onTap;
 
-  const _IconButton({Key? key, required this.icon, required this.onTap})
+  const IconButton({Key? key, required this.icon, required this.onTap})
       : super(key: key);
 
   @override
+  _IconButtonState createState() => _IconButtonState();
+}
+
+// Custom widget for an icon button
+class _IconButtonState extends State<IconButton> {
+  bool isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Icon(
-        icon,
-        color: Colors.white,
-        size: 30, // Icon size
+    return MouseRegion(
+      onEnter: (_) => setState(() => isHovered = true),
+      onExit: (_) => setState(() => isHovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: Icon(
+          widget.icon,
+          color: isHovered ? Color.fromARGB(255, 11, 53, 221) : Colors.white,
+          size: 30, // Icon size
+        ),
       ),
     );
   }

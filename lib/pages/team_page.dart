@@ -8,7 +8,7 @@ class TeamPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(110.0),
-        child: CustomNavigationBar(), // Use the custom navigation bar
+        child: CustomNavigationBar(activePage: 'Team'), // Use the custom navigation bar
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -290,7 +290,7 @@ class TeamPage extends StatelessWidget {
   }
 }
 
-class TeamMemberCard extends StatelessWidget {
+class TeamMemberCard extends StatefulWidget {
   final String name;
   final String role;
   final String imagePath;
@@ -299,6 +299,14 @@ class TeamMemberCard extends StatelessWidget {
     required this.role,
     this.imagePath = 'assets/images/photos/placeholder.png', // Default placeholder image if no imagePath is specified in the widget call
   });
+
+  @override
+  _TeamMemberCardState createState() => _TeamMemberCardState();
+}
+
+class _TeamMemberCardState extends State<TeamMemberCard> {
+  bool isHovered1 = false;
+  bool isHovered2 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -314,7 +322,7 @@ class TeamMemberCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8), // Slightly rounded corners
               image: DecorationImage(
-                image: AssetImage(imagePath),
+                image: AssetImage(widget.imagePath),
                 fit: BoxFit.cover,
               ),
               color: Colors.grey[200],
@@ -323,7 +331,7 @@ class TeamMemberCard extends StatelessWidget {
           SizedBox(height: 12),
           // Name Text (left-aligned)
           Text(
-            name.toUpperCase(),
+            widget.name.toUpperCase(),
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w800,
@@ -333,7 +341,7 @@ class TeamMemberCard extends StatelessWidget {
           ),
           // Role Text (left-aligned)
           Text(
-            role,
+            widget.role,
             style: TextStyle(
               fontSize: 22,
               color: Color.fromRGBO(11, 71, 222, 1),
@@ -345,9 +353,17 @@ class TeamMemberCard extends StatelessWidget {
           // Icons Row (Email, LinkedIn) left-aligned
           Row(
             children: [
-              Icon(Icons.email, size: 30, color: Colors.black87),
+              MouseRegion(
+                onEnter: (_) => setState(() => isHovered1 = true),
+                onExit: (_) => setState(() => isHovered1 = false),
+                child: Icon(Icons.email, size: 30, color: isHovered1 ? Color.fromARGB(255, 11, 53, 221) : Colors.black87),
+              ),
               SizedBox(width: 8),
-              Icon(Icons.link, size: 30, color: Colors.black87),
+              MouseRegion(
+                onEnter: (_) => setState(() => isHovered2 = true),
+                onExit: (_) => setState(() => isHovered2 = false),
+                child: Icon(Icons.link, size: 30, color: isHovered2 ? Color.fromARGB(255, 11, 53, 221) :  Colors.black87),
+              ),
             ],
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:investsyncwebsite/animations/fade_in_animation.dart';
 
 class ParallaxImage extends StatelessWidget {
   final String imageUrl;
@@ -105,7 +106,7 @@ class ParallaxImage extends StatelessWidget {
                 right: anchor == 'right' ? horizontalPos : null,
                 top: verticalPos +
                     parallaxOffset, // Add parallax effect to text position
-                child: textWidget,
+                child: FadeInAnimationWidget(content: textWidget, offset: Offset(0, 2), duration: Duration(milliseconds: 750)),
               ));
             });
 
@@ -122,6 +123,7 @@ class ParallaxImage extends StatelessWidget {
                   ),
                 ),
                 // Overlay the dynamically positioned text on top of the image
+
                 ...titleWidgets,
               ],
             );

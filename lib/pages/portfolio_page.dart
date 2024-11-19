@@ -9,11 +9,11 @@ class PortfolioPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(
             110.0), // Set the height of your custom navigation bar
-        child: CustomNavigationBar(),
+        child: CustomNavigationBar(activePage: 'Portfolio'),
       ),
       body: Center(
-        child: Text(
-            'Welcome to the Home Page'), // Placeholder content for HomePage
+        // Placeholder for now
+        child: Image.network('assets/images/whatthell.jpg', fit: BoxFit.cover)
       ),
       bottomNavigationBar: BotNav(), // Add BotNav here
     );

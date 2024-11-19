@@ -8,6 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  visibility_detector: ^0.3.3
+
 
   # # Utility Packages
   # intl: ^0.19.0
@@ -63,8 +65,8 @@ flutter:
   assets:
     - assets/logos/
     - assets/images/content/
-    - assets/images/animations/
     - assets/images/photos/
+    - assets/images/
     - assets/icons/
 
   #--------------- LOCAL FONTS ------------------#

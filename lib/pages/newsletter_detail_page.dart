@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:investsyncwebsite/common/widgets/topnav.dart';
 import 'package:investsyncwebsite/data/newsletter_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ArticleDetailPage extends StatelessWidget {
   final Article article;
@@ -90,7 +92,7 @@ class ArticleDetailPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(110.0),
-        child: CustomNavigationBar(),
+        child: CustomNavigationBar(activePage: 'Newsletter'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -244,6 +246,14 @@ class ArticleDetailPage extends StatelessWidget {
                                         color: Colors.blue,
                                         decoration: TextDecoration.underline,
                                       ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () async {
+                                          if (await canLaunchUrl(Uri.parse(url))) {
+                                            await launchUrl(Uri.parse(url));
+                                          } else {
+                                            throw 'Could not launch $url';
+                                          }
+                                        },
                                     ),
                                 ],
                               ),

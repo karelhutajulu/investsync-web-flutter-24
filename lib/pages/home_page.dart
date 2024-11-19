@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
           Colors.grey[200], // Set Scaffold background color to grey
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(110.0), // Custom navigation bar height
-        child: CustomNavigationBar(),
+        child: CustomNavigationBar(activePage: 'Home'),
       ),
       body: CustomScrollView(
         controller: scrollController,

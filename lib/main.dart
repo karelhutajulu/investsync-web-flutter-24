@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Investsync Website',
+      title: 'InvestSync Website',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
