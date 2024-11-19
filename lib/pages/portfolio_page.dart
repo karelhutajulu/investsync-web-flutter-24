@@ -13,7 +13,7 @@ class PortfolioPage extends StatelessWidget {
       ),
       body: Center(
         // Placeholder for now
-        child: Image.network('assets/images/whatthell.jpg', fit: BoxFit.cover)
+        child: Image.network('assets/images/whatthehell.png'),
       ),
       bottomNavigationBar: BotNav(), // Add BotNav here
     );
