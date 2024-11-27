@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:investsyncwebsite/pages/home_page.dart';
 import 'package:investsyncwebsite/pages/newsletter_page.dart';
 import 'package:investsyncwebsite/pages/team_page.dart';
@@ -10,6 +11,18 @@ class CustomNavigationBar extends StatelessWidget {
 
   const CustomNavigationBar({Key? key, required this.activePage})
       : super(key: key);
+
+  // Define the Fade Transition using GetX
+  PageRouteBuilder _buildPageRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(animation);
+        return FadeTransition(opacity: fadeAnimation, child: child);
+      },
+      transitionDuration: Duration(milliseconds: 500), // Fade transition duration
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +54,8 @@ class CustomNavigationBar extends StatelessWidget {
                 isActive:
                     activePage == 'Home', // Check if this is the active page
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
+                  // Using GetX to navigate with a fade transition
+                  Get.offAll(() => HomePage(), transition: Transition.fade, duration: Duration(milliseconds: 500));
                 },
               ),
               SizedBox(width: 20),
@@ -53,10 +64,7 @@ class CustomNavigationBar extends StatelessWidget {
                 isActive:
                     activePage == 'Team', // Check if this is the active page
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TeamPage()),
-                  );
+                  Get.offAll(() => TeamPage(), transition: Transition.fade, duration: Duration(milliseconds: 500));
                 },
               ),
               SizedBox(width: 20),
@@ -65,10 +73,7 @@ class CustomNavigationBar extends StatelessWidget {
                 isActive: activePage ==
                     'Newsletter', // Check if this is the active page
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NewsletterPage()),
-                  );
+                  Get.offAll(() => NewsletterPage(), transition: Transition.fade, duration: Duration(milliseconds: 500));
                 },
               ),
               SizedBox(width: 20),
@@ -77,10 +82,7 @@ class CustomNavigationBar extends StatelessWidget {
                 isActive: activePage ==
                     'Portfolio', // Check if this is the active page
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PortfolioPage()),
-                  );
+                  Get.offAll(() => PortfolioPage(), transition: Transition.fade, duration: Duration(milliseconds: 500));
                 },
               ),
               SizedBox(width: 20),

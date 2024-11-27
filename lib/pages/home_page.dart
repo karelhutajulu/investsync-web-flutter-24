@@ -99,32 +99,6 @@ class HomePage extends StatelessWidget {
 
           // Bottom Navigation Bar
           SliverToBoxAdapter(child: BotNav()),
-
-          // Navigation Buttons for other pages (Teams and Newsletter)
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
-              child: Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      // Navigate to Teams page
-                      Get.toNamed('/team');
-                    },
-                    child: Text('Go to Team Page'),
-                  ),
-                  SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Navigate to Newsletter page
-                      Get.toNamed('/newsletter');
-                    },
-                    child: Text('Go to Newsletter Page'),
-                  ),
-                ],
-              ),
-            ),
-          ),
         ],
       ),
     );
