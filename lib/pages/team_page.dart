@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:investsyncwebsite/common/widgets/topnav.dart'; // Import the CustomNavigationBar
 import 'package:investsyncwebsite/common/widgets/botnav.dart'; // Import the BotNav
+import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Import FontAwesome Icons
+import 'package:url_launcher/url_launcher.dart'; // Import URL Launcher for opening links
+import 'package:get/get.dart';
+
+
 
 class TeamPage extends StatelessWidget {
   @override
@@ -88,16 +93,22 @@ class TeamPage extends StatelessWidget {
                         name: "Hoyun Joseph Jung",
                         role: "President",
                         imagePath: "assets/images/photos/HJJ.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=hoyuny0426@gmail.com&tf=cm",
+                        linkedinLink: "http://www.linkedin.com/in/hoyunjosephjung",
                       ),
                       TeamMemberCard(
                         name: "Caitlyn Kay",
                         role: "Co-President",
                         imagePath: "assets/images/photos/CK.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=caitlynkay07@gmail.com&tf=cm",
+                        linkedinLink: "http://linkedin.com/in/caitlynkay07",
                       ),
                       TeamMemberCard(
                         name: "William A. Tanex",
                         role: "Vice President",
                         imagePath: "assets/images/photos/WAT.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=alexandertanex@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/william-alexander-tanex/",
                       ),
                     ],
                   ),
@@ -110,15 +121,21 @@ class TeamPage extends StatelessWidget {
                         name: "Bhurida Chatlekhaivanich",
                         role: "Chief Finance Officer",
                         imagePath: "assets/images/photos/BC.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=kaye.bhurida@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/bhurida-chatlekhavanich-828792227?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                       ),
                       TeamMemberCard(
                         name: "Nikita Tanaya",
                         role: "Chief Technology Officer",
                         imagePath: "assets/images/photos/NT.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=tanjayanikita@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/nikita-tanjaya?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                       ),
                       TeamMemberCard(
                         name: "TBA",
                         role: "CMO",
+                        emailLink: "",
+                        linkedinLink: "",
                       ),
                     ],
                   ),
@@ -131,15 +148,21 @@ class TeamPage extends StatelessWidget {
                         name: "Maire Baukop Hellem",
                         role: "Chief HR Officer",
                         imagePath: "assets/images/photos/MBH.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=mairebaukoph25@gmail.com&tf=cm",
+                        linkedinLink: "http://linkedin.com/in/maire-baukop-hellem-1161b8231",
                       ),
                       TeamMemberCard(
                         name: "TBA",
                         role: "Chief Editor",
+                        emailLink: "",
+                        linkedinLink: "",
                       ),
                       TeamMemberCard(
                         name: "Junjira Adisakdechakul",
                         role: "External HR Manager",
                         imagePath: "assets/images/photos/JA.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=baa04mm@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/junjira-adisakdechakul-29451b2b3/",
                       ),
                     ],
                   ),
@@ -152,16 +175,22 @@ class TeamPage extends StatelessWidget {
                         name: "Chrisantha Ongko",
                         role: "Internal HR Manager",
                         imagePath: "assets/images/photos/CO.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=chrisanthaong@gmail.com&tf=cm",
+                        linkedinLink: "http://www.linkedin.com/in/chrisantha-ongko-3691a724a",
                       ),
                       TeamMemberCard(
                         name: "Vincent Ang",
                         role: "Secretary",
                         imagePath: "assets/images/photos/VA.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=vincent.ang523@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/vincent-ang-977865281/",
                       ),
                       TeamMemberCard(
                         name: "Olivia D. Christanto",
                         role: "Secretary",
                         imagePath: "assets/images/photos/ODC.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=oliviadchrist@gmail.com&tf=cm",
+                        linkedinLink: "http://www.linkedin.com/in/oliviadewi",
                       ),
                     ],
                   ),
@@ -173,16 +202,22 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "Cellinie",
                         role: "Market Analyst",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=cellinietanaga2004@gmail.com&tf=cm",
+                        linkedinLink: "http://linkedin.com/in/cellinie-tanaga-50676724a",
                       ),
                       TeamMemberCard(
                         name: "Annabel Leonardi",
                         role: "Market Analyst",
                         imagePath: "assets/images/photos/AL.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=annabel.leonardi@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/annabel-leonardi-13754b231",
                       ),
                       TeamMemberCard(
                         name: "Angelina C. Handonjo",
                         role: "Market Analyst",
                         imagePath: "assets/images/photos/ACH.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=celine.handojo@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/angelina-celine-handojo-9a13251aa",
                       ),
                     ],
                   ),
@@ -195,16 +230,22 @@ class TeamPage extends StatelessWidget {
                         name: "Bryan Jonathan",
                         role: "Web Developer",
                         imagePath: "assets/images/photos/BJ.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=24bryan.jonathan@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/bryan-jonathan-461b0724a/",
                       ),
                       TeamMemberCard(
                         name: "Matthew Kwok",
                         role: "Web Developer",
                         imagePath: "assets/images/photos/MK.png",
+                        emailLink: "http://www.linkedin.com/in/matthew-kwok-4641b4293",
+                        linkedinLink: "http://www.linkedin.com/in/matthew-kwok-4641b4293",
                       ),
                       TeamMemberCard(
                         name: "Chananan Watsooksunti",
                         role: "Treasury",
                         imagePath: "assets/images/photos/CW.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=chanananw@gmail.com&tf=cm",
+                        linkedinLink: "", //No LinkedIn Page Link Found
                       ),
                     ],
                   ),
@@ -217,16 +258,22 @@ class TeamPage extends StatelessWidget {
                         name: "Bryan Budiarto Sutanto",
                         role: "Treasury",
                         imagePath: "assets/images/photos/BBS.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=bryan.b.sutanto@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/bryan-budiarta-sutanto-6031a41b0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                       ),
                       TeamMemberCard(
                         name: "Eugenia J. Budiono",
                         role: "Publicist",
                         imagePath: "assets/images/photos/EJB.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=jocelynwu153@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/eugenia-jocelyn-budiono-507b9a270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
                       ),
                       TeamMemberCard(
                         name: "Angelica P. T. Tuerah",
                         role: "Publicist",
                         imagePath: "assets/images/photos/APTT.png",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=angelica.tuerah2004@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/angelica-tuerah-9ab0942a2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
                       ),
                     ],
                   ),
@@ -270,10 +317,14 @@ class TeamPage extends StatelessWidget {
                       TeamMemberCard(
                         name: "William H. Loe",
                         role: "Senior Analyst",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=reinard.tristan@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/reinard-tristan-jacques/",
                       ),
                       TeamMemberCard(
                         name: "Reinard T.J. Nathaniel",
                         role: "Senior Analyst",
+                        emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=tjandra.william31@gmail.com&tf=cm",
+                        linkedinLink: "https://www.linkedin.com/in/william-tjandra-3a45a4301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                       ),
                     ],
                   ),
@@ -294,22 +345,56 @@ class TeamMemberCard extends StatefulWidget {
   final String name;
   final String role;
   final String imagePath;
+  final String emailLink; // Add an email link parameter
+  final String linkedinLink; // Add a LinkedIn link parameter
+  
   const TeamMemberCard({
     required this.name,
     required this.role,
     this.imagePath = 'assets/images/photos/placeholder.png', // Default placeholder image if no imagePath is specified in the widget call
+    required this.emailLink,
+    required this.linkedinLink,
   });
 
   @override
   _TeamMemberCardState createState() => _TeamMemberCardState();
 }
 
+class HoverController extends GetxController {
+  // Store hover state for each icon (email and LinkedIn)
+  var isHoveredEmail = false.obs;
+  var isHoveredLinkedIn = false.obs;
+
+  // Toggle hover state for email icon
+  void toggleEmailHover(bool isHovered) {
+    isHoveredEmail.value = isHovered;
+  }
+
+  // Toggle hover state for LinkedIn icon
+  void toggleLinkedInHover(bool isHovered) {
+    isHoveredLinkedIn.value = isHovered;
+  }
+}
+
 class _TeamMemberCardState extends State<TeamMemberCard> {
   bool isHovered1 = false;
   bool isHovered2 = false;
 
+  // Function to launch URLs (either email or LinkedIn)
+  Future<void> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    // Instantiate HoverController using GetX
+    final HoverController hoverController = Get.put(HoverController());
+
     return Container(
       width: 375, // Set fixed width for consistent sizing
       child: Column(
@@ -353,17 +438,35 @@ class _TeamMemberCardState extends State<TeamMemberCard> {
           // Icons Row (Email, LinkedIn) left-aligned
           Row(
             children: [
-              MouseRegion(
-                onEnter: (_) => setState(() => isHovered1 = true),
-                onExit: (_) => setState(() => isHovered1 = false),
-                child: Icon(Icons.email, size: 30, color: isHovered1 ? Color.fromARGB(255, 11, 53, 221) : Colors.black87),
-              ),
+              Obx(() => MouseRegion(
+                    onEnter: (_) => hoverController.toggleEmailHover(true),
+                    onExit: (_) => hoverController.toggleEmailHover(false),
+                    child: GestureDetector(
+                      onTap: () => launch('mailto:${widget.emailLink}'),
+                      child: Icon(
+                        Icons.email,
+                        size: 30,
+                        color: hoverController.isHoveredEmail.value
+                            ? Color.fromARGB(255, 11, 53, 221)
+                            : Colors.black87,
+                      ),
+                    ),
+                  )),
               SizedBox(width: 8),
-              MouseRegion(
-                onEnter: (_) => setState(() => isHovered2 = true),
-                onExit: (_) => setState(() => isHovered2 = false),
-                child: Icon(Icons.link, size: 30, color: isHovered2 ? Color.fromARGB(255, 11, 53, 221) :  Colors.black87),
-              ),
+              Obx(() => MouseRegion(
+                    onEnter: (_) => hoverController.toggleLinkedInHover(true),
+                    onExit: (_) => hoverController.toggleLinkedInHover(false),
+                    child: GestureDetector(
+                      onTap: () => launch(widget.linkedinLink),
+                      child: FaIcon(
+                        FontAwesomeIcons.linkedin,
+                        size: 30,
+                        color: hoverController.isHoveredLinkedIn.value
+                            ? Color.fromARGB(255, 11, 53, 221)
+                            : Colors.black87,
+                      ),
+                    ),
+                  )),
             ],
           ),
         ],

@@ -8,7 +8,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  social_media_buttons: ^1.0.0
   visibility_detector: ^0.3.3
+  url_launcher: ^6.0.20
+  font_awesome_flutter: ^10.1.0
+  get: ^4.6.5
 
 
   # # Utility Packages
