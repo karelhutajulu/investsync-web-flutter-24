@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:investsyncwebsite/common/widgets/topnav.dart'; // Import the navigation bar
 import 'package:investsyncwebsite/common/widgets/article_card.dart'; // Import the ArticleCard widget
 import 'package:investsyncwebsite/common/widgets/botnav.dart'; // Import the BotNav widget
@@ -32,13 +33,8 @@ class NewsletterPage extends StatelessWidget {
                         article: article,
                         onTap: () {
                           print('Article tapped: ${article.title}');
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  ArticleDetailPage(article: article),
-                            ),
-                          );
+                           // Use GetX routing to navigate
+                          Get.to(() => ArticleDetailPage(article: article));
                         },
                       ),
                       SizedBox(height: 30),
