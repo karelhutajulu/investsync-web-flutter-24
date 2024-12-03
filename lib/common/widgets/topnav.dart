@@ -20,7 +20,8 @@ class CustomNavigationBar extends StatelessWidget {
         var fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(animation);
         return FadeTransition(opacity: fadeAnimation, child: child);
       },
-      transitionDuration: Duration(milliseconds: 500), // Fade transition duration
+      transitionDuration:
+          Duration(milliseconds: 500), // Fade transition duration
     );
   }
 
@@ -55,7 +56,9 @@ class CustomNavigationBar extends StatelessWidget {
                     activePage == 'Home', // Check if this is the active page
                 onTap: () {
                   // Using GetX to navigate with a fade transition
-                  Get.offAll(() => HomePage(), transition: Transition.fade, duration: Duration(milliseconds: 500));
+                  Get.offAll(() => HomePage(),
+                      transition: Transition.fade,
+                      duration: Duration(milliseconds: 500));
                 },
               ),
               SizedBox(width: 20),
@@ -64,7 +67,9 @@ class CustomNavigationBar extends StatelessWidget {
                 isActive:
                     activePage == 'Team', // Check if this is the active page
                 onTap: () {
-                  Get.offAll(() => TeamPage(), transition: Transition.fade, duration: Duration(milliseconds: 500));
+                  Get.offAll(() => TeamPage(),
+                      transition: Transition.fade,
+                      duration: Duration(milliseconds: 500));
                 },
               ),
               SizedBox(width: 20),
@@ -73,7 +78,9 @@ class CustomNavigationBar extends StatelessWidget {
                 isActive: activePage ==
                     'Newsletter', // Check if this is the active page
                 onTap: () {
-                  Get.offAll(() => NewsletterPage(), transition: Transition.fade, duration: Duration(milliseconds: 500));
+                  Get.offAll(() => NewsletterPage(),
+                      transition: Transition.fade,
+                      duration: Duration(milliseconds: 500));
                 },
               ),
               SizedBox(width: 20),
@@ -82,7 +89,9 @@ class CustomNavigationBar extends StatelessWidget {
                 isActive: activePage ==
                     'Portfolio', // Check if this is the active page
                 onTap: () {
-                  Get.offAll(() => PortfolioPage(), transition: Transition.fade, duration: Duration(milliseconds: 500));
+                  Get.offAll(() => PortfolioPage(),
+                      transition: Transition.fade,
+                      duration: Duration(milliseconds: 500));
                 },
               ),
               SizedBox(width: 20),
@@ -133,8 +142,8 @@ class _NavBarItemState extends State<NavBarItem> {
                       ? Color.fromARGB(255, 11, 53, 221) // Hover color
                       : Colors.black, // Default color
               fontSize: 30,
-              fontFamily: 'Kepler',
-              fontWeight: FontWeight.w600,
+              fontFamily: 'Typold',
+              fontWeight: FontWeight.w800,
               letterSpacing: -0.5,
             ),
             child: Text(widget.title),
@@ -159,7 +168,8 @@ class _JoinButtonState extends State<JoinButton> {
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 150), // Duration of the color change animation
+        duration: Duration(
+            milliseconds: 150), // Duration of the color change animation
         curve: Curves.easeInOut, // Smooth curve for the animation
         decoration: BoxDecoration(
           color: isHovered
@@ -178,7 +188,7 @@ class _JoinButtonState extends State<JoinButton> {
             style: TextStyle(
               color: Colors.white,
               fontSize: 26,
-              fontFamily: 'Kepler',
+              fontFamily: 'Typold',
               fontWeight: FontWeight.w600,
               letterSpacing: -0.5,
             ),

@@ -11,7 +11,6 @@ class ArticleCard extends StatefulWidget {
     required this.onTap,
   }) : super(key: key);
   @override
-
   _ArticleCardState createState() => _ArticleCardState();
 }
 
@@ -26,7 +25,7 @@ class _ArticleCardState extends State<ArticleCard> {
       child: GestureDetector(
         onTap: widget.onTap, // Trigger the onTap function when clicked
         child: Container(
-          height: 350.0, // Fixed height for the card
+          height: 340.0, // Fixed height for the card
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(
@@ -76,8 +75,8 @@ class _ArticleCardState extends State<ArticleCard> {
                               SizedBox(height: 4),
                               Text(
                                 '${widget.article.date} • ${widget.article.readTime}',
-                                style:
-                                    TextStyle(fontSize: 10, color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 10, color: Colors.black),
                               ),
                             ],
                           ),
@@ -88,25 +87,35 @@ class _ArticleCardState extends State<ArticleCard> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 13),
                       AnimatedDefaultTextStyle(
-                        duration: Duration(milliseconds: 100), // Duration of the animation
+                        duration: Duration(
+                            milliseconds: 100), // Duration of the animation
                         curve: Curves.easeInOut, // Smooth animation curve
                         style: TextStyle(
-                          color: isHovered ? Color.fromARGB(255, 11, 53, 221) : Colors.black,
-                          fontSize: 22,
-                          fontFamily: 'Cormorant',
-                          fontWeight: FontWeight.w800,
-                        ),
+                            color: isHovered
+                                ? Color.fromARGB(255, 11, 53, 221)
+                                : Colors.black,
+                            fontSize: 22,
+                            fontFamily: 'Cormorant',
+                            fontWeight: FontWeight.w800,
+                            height: 1.4),
                         child: Text(widget.article.title.toUpperCase()),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 13),
                       AnimatedDefaultTextStyle(
-                        duration: Duration(milliseconds: 100), // Duration of the animation
+                        duration: Duration(
+                            milliseconds: 100), // Duration of the animation
                         curve: Curves.easeInOut, // Smooth animation curve
                         style: TextStyle(
-                          color: isHovered ? Color.fromARGB(255, 11, 53, 221) : Colors.black,
-                          fontSize: 15,
+                          color: isHovered
+                              ? Color.fromARGB(255, 11, 53, 221)
+                              : Colors.black,
+                          fontFamily: 'Typold',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                          height:
+                              1.5, // Increase the line spacing (1.5x the font size)
                         ),
                         child: Text(widget.article.description),
                       ),

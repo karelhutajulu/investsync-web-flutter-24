@@ -104,4 +104,10 @@ flutter:
           weight: 600
         - asset: assets/fonts/kepler-std/KeplerStdScnCapt.ttf
           weight: 700
-          
+        - asset: assets/fonts/kepler-std/Copse-Regular.ttf
+          weight: 700
+         
+    - family: Typold
+      fonts:
+        - asset: assets/fonts/typold/The-Northern-Block-Ltd-Typold-Light.otf
+          weight: 600
