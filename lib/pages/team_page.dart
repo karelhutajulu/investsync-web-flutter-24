@@ -95,8 +95,9 @@ class _TeamPageState extends State<TeamPage> {
                 children: [
                   // First Row of team members
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Hoyun Joseph Jung",
                         role: "President",
@@ -104,6 +105,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=hoyuny0426@gmail.com&tf=cm",
                         linkedinLink: "http://www.linkedin.com/in/hoyunjosephjung",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Caitlyn Kay",
                         role: "Co-President",
@@ -111,6 +113,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=caitlynkay07@gmail.com&tf=cm",
                         linkedinLink: "http://linkedin.com/in/caitlynkay07",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "William A. Tanex",
                         role: "Vice President",
@@ -118,13 +121,15 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=alexandertanex@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/william-alexander-tanex/",
                       ),
+                      Spacer(flex:1),
                     ],
                   ),
                   SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Second Row of team members
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Bhurida Chatlekhaivanich",
                         role: "Chief Finance Officer",
@@ -132,6 +137,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=kaye.bhurida@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/bhurida-chatlekhavanich-828792227?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Nikita Tanaya",
                         role: "Chief Technology Officer",
@@ -139,19 +145,22 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=tanjayanikita@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/nikita-tanjaya?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "TBA",
                         role: "CMO",
                         emailLink: "",
                         linkedinLink: "",
                       ),
+                      Spacer(flex:1),
                     ],
                   ),
                   SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Third Row of team members
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Maire Baukop Hellem",
                         role: "Chief HR Officer",
@@ -159,12 +168,14 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=mairebaukoph25@gmail.com&tf=cm",
                         linkedinLink: "http://linkedin.com/in/maire-baukop-hellem-1161b8231",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "TBA",
                         role: "Chief Editor",
                         emailLink: "",
                         linkedinLink: "",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Junjira Adisakdechakul",
                         role: "External HR Manager",
@@ -172,13 +183,15 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=baa04mm@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/junjira-adisakdechakul-29451b2b3/",
                       ),
+                      Spacer(flex:1),
                     ],
                   ),
                   SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Fourth Row of Team Members
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Chrisantha Ongko",
                         role: "Internal HR Manager",
@@ -186,6 +199,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=chrisanthaong@gmail.com&tf=cm",
                         linkedinLink: "http://www.linkedin.com/in/chrisantha-ongko-3691a724a",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Vincent Ang",
                         role: "Secretary",
@@ -193,6 +207,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=vincent.ang523@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/vincent-ang-977865281/",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Olivia D. Christanto",
                         role: "Secretary",
@@ -200,19 +215,22 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=oliviadchrist@gmail.com&tf=cm",
                         linkedinLink: "http://www.linkedin.com/in/oliviadewi",
                       ),
+                      Spacer(flex:1),
                     ],
                   ),
                   SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Fifth Row of Team Members
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Cellinie",
                         role: "Market Analyst",
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=cellinietanaga2004@gmail.com&tf=cm",
                         linkedinLink: "http://linkedin.com/in/cellinie-tanaga-50676724a",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Annabel Leonardi",
                         role: "Market Analyst",
@@ -220,6 +238,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=annabel.leonardi@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/annabel-leonardi-13754b231",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Angelina C. Handonjo",
                         role: "Market Analyst",
@@ -227,13 +246,15 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=celine.handojo@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/angelina-celine-handojo-9a13251aa",
                       ),
+                      Spacer(flex:1),
                     ],
                   ),
                   SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Sixth Row of Team Members
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Bryan Jonathan",
                         role: "Web Developer",
@@ -241,6 +262,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=24bryan.jonathan@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/bryan-jonathan-461b0724a/",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Matthew Kwok",
                         role: "Web Developer",
@@ -248,6 +270,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "http://www.linkedin.com/in/matthew-kwok-4641b4293",
                         linkedinLink: "http://www.linkedin.com/in/matthew-kwok-4641b4293",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Chananan Watsooksunti",
                         role: "Treasury",
@@ -255,13 +278,15 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=chanananw@gmail.com&tf=cm",
                         linkedinLink: "", //No LinkedIn Page Link Found
                       ),
+                      Spacer(flex:1),
                     ],
                   ),
                   SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Seventh Row of Team Members
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Bryan Budiarto Sutanto",
                         role: "Treasury",
@@ -269,6 +294,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=bryan.b.sutanto@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/bryan-budiarta-sutanto-6031a41b0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Eugenia J. Budiono",
                         role: "Publicist",
@@ -276,6 +302,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=jocelynwu153@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/eugenia-jocelyn-budiono-507b9a270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Angelica P. T. Tuerah",
                         role: "Publicist",
@@ -283,6 +310,7 @@ class _TeamPageState extends State<TeamPage> {
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=angelica.tuerah2004@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/angelica-tuerah-9ab0942a2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
                       ),
+                      Spacer(flex:1),
                     ],
                   ),
 
@@ -320,20 +348,23 @@ class _TeamPageState extends State<TeamPage> {
                 children: [
                   // First Row of team members
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "William H. Loe",
                         role: "Senior Analyst",
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=reinard.tristan@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/reinard-tristan-jacques/",
                       ),
+                      Spacer(flex:1),
                       TeamMemberCard(
                         name: "Reinard T.J. Nathaniel",
                         role: "Senior Analyst",
                         emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=tjandra.william31@gmail.com&tf=cm",
                         linkedinLink: "https://www.linkedin.com/in/william-tjandra-3a45a4301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
                       ),
+                      Spacer(flex:1),
                     ],
                   ),
                 ],
