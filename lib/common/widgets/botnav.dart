@@ -2,20 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Import Font Awesome icons
 import 'package:url_launcher/url_launcher.dart'; // Import url_launcher for link actions
 
-class BotNav extends StatelessWidget {
+final Size defaultDeviceSize = Size(1536.0, 729.6); // Default size
+Size deviceSize = Size(0, 0);
+
+class BotNav extends StatefulWidget {
+  @override
+  createState() => _BotNavState();
+}
+
+class _BotNavState extends State<BotNav> {
   @override
   Widget build(BuildContext context) {
+    deviceSize = MediaQuery.of(context).size;
+
     return Container(
-      height: 150.0, // Increased height for the bottom navigation bar
+      height: 150.0/defaultDeviceSize.height * deviceSize.height, // Increased height for the bottom navigation bar
       color: Colors.black87, // Dark background color for the BotNav section
       padding: EdgeInsets.symmetric(
-          horizontal: 100), // Horizontal padding for alignment
+          horizontal: 100/defaultDeviceSize.width * deviceSize.width), // Horizontal padding for alignment
       child: Row(
         children: [
           // Logo on the left
           Image.asset(
             'assets/logos/investsync-logo-white.jpg', // Path to white logo image
-            height: 80.0, // Adjusted height for the logo
+            height: 80.0/defaultDeviceSize.height * deviceSize.height, // Adjusted height for the logo
           ),
           Spacer(), // Takes up remaining space to push navigation items to the right
 
@@ -34,7 +44,7 @@ class BotNav extends StatelessWidget {
                   }
                 },
               ),
-              SizedBox(width: 30),
+              SizedBox(width: 30/defaultDeviceSize.width * deviceSize.width),
               IconButton(
                 icon: FontAwesomeIcons.envelope,
                 onTap: () async {
@@ -47,7 +57,7 @@ class BotNav extends StatelessWidget {
                   }
                 },
               ),
-              SizedBox(width: 30),
+              SizedBox(width: 30/defaultDeviceSize.width * deviceSize.width),
               IconButton(
                 icon: FontAwesomeIcons.instagram,
                 onTap: () {
@@ -87,7 +97,7 @@ class _IconButtonState extends State<IconButton> {
         child: Icon(
           widget.icon,
           color: isHovered ? Color.fromARGB(255, 11, 53, 221) : Colors.white,
-          size: 30, // Icon size
+          size: 30 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)), // Icon size
         ),
       ),
     );

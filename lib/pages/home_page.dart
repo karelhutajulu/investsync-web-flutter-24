@@ -5,11 +5,14 @@ import 'package:investsyncwebsite/common/widgets/topnav.dart';
 import 'package:investsyncwebsite/common/widgets/botnav.dart';
 import 'package:investsyncwebsite/common/widgets/parallax_image.dart';
 
+final Size defaultDeviceSize = Size(1536.0, 729.6);
+Size deviceSize = Size(0, 0); // Default size
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScrollController scrollController = ScrollController();
+    deviceSize = MediaQuery.of(context).size;
 
     // Parallax factor to adjust speed
     const double parallaxFactor = 0.5;
@@ -18,7 +21,7 @@ class HomePage extends StatelessWidget {
       backgroundColor:
           Colors.grey[200], // Set Scaffold background color to grey
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(110.0), // Custom navigation bar height
+        preferredSize: Size.fromHeight(110.0/defaultDeviceSize.height * deviceSize.height), // Custom navigation bar height
         child: CustomNavigationBar(activePage: 'Home'),
       ),
       body: CustomScrollView(
@@ -85,7 +88,7 @@ class HomePage extends StatelessWidget {
             child: Container(
               color: Colors.grey[200], // Set background color to light grey
               padding:
-                  const EdgeInsets.symmetric(vertical: 20.0), // Add padding
+                  EdgeInsets.symmetric(vertical: 20.0/defaultDeviceSize.height * deviceSize.height), // Add padding
               child: DescriptionCard(
                 title: 'OUR MISSION',
                 description: [

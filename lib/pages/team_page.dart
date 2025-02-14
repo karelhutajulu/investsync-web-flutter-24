@@ -5,14 +5,22 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Import FontA
 import 'package:url_launcher/url_launcher.dart'; // Import URL Launcher for opening links
 import 'package:get/get.dart';
 
+final Size defaultDeviceSize = Size(1536.0, 729.6); // Default size
+Size deviceSize = Size(0, 0);
 
+class TeamPage extends StatefulWidget {
+  @override
+  createState() => _TeamPageState();
+}
 
-class TeamPage extends StatelessWidget {
+class _TeamPageState extends State<TeamPage> {
   @override
   Widget build(BuildContext context) {
+    deviceSize = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(110.0),
+        preferredSize: Size.fromHeight(110.0/defaultDeviceSize.height * deviceSize.height),
         child: CustomNavigationBar(activePage: 'Team'), // Use the custom navigation bar
       ),
       body: SingleChildScrollView(
@@ -25,7 +33,7 @@ class TeamPage extends StatelessWidget {
                 // Background Image
                 Container(
                   width: double.infinity,
-                  height: 250,
+                  height: 250/defaultDeviceSize.height * deviceSize.height,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/images/photos/golden_bull.png"), // Path to your background image
@@ -40,12 +48,12 @@ class TeamPage extends StatelessWidget {
                       "MEET THE TEAM",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 64,
+                        fontSize: 64 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Cormorant',
                         shadows: [
                           Shadow(
-                            offset: Offset(2, 2),
+                            offset: Offset(2/defaultDeviceSize.width * deviceSize.width, 2/defaultDeviceSize.height * deviceSize.height),
                             blurRadius: 5.0,
                             color: Colors.black.withOpacity(0.5),
                           ),
@@ -58,31 +66,31 @@ class TeamPage extends StatelessWidget {
             ),
             // Board of Directors Title
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 48.0),
+              padding: EdgeInsets.symmetric(vertical: 48.0/defaultDeviceSize.height * deviceSize.height),
               child: Column(
                 children: [
                   Text(
                     "BOARD OF DIRECTORS",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 49,
+                      fontSize: 49 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
                       fontFamily: 'Cormorant', // Specify font
                     ),
                   ),
                   Container(
-                    height: 2,
-                    width: 30,
+                    height: 2/defaultDeviceSize.height * deviceSize.height,
+                    width: 30/defaultDeviceSize.width * deviceSize.width,
                     color: Colors.black87,
-                    margin: EdgeInsets.only(top: 6),
+                    margin: EdgeInsets.only(top: 6/defaultDeviceSize.height * deviceSize.height),
                   ),
                 ],
               ),
             ),
             // Team Members Grid
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
+              padding: EdgeInsets.symmetric(horizontal: 32/defaultDeviceSize.width * deviceSize.width),
               child: Column(
                 children: [
                   // First Row of team members
@@ -112,7 +120,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Second Row of team members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -139,7 +147,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Third Row of team members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -166,7 +174,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Fourth Row of Team Members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -194,7 +202,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Fifth Row of Team Members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -221,7 +229,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Sixth Row of Team Members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -249,7 +257,7 @@ class TeamPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
                   // Seventh Row of Team Members
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -283,31 +291,31 @@ class TeamPage extends StatelessWidget {
             ),
             // Investment Team Title
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 48.0),
+              padding: EdgeInsets.symmetric(vertical: 48.0/defaultDeviceSize.height * deviceSize.height),
               child: Column(
                 children: [
                   Text(
                     "INVESTMENT TEAM",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 49,
+                      fontSize: 49 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
                       fontFamily: 'Cormorant', // Specify font
                     ),
                   ),
                   Container(
-                    height: 2,
-                    width: 30,
+                    height: 2/defaultDeviceSize.height * deviceSize.height,
+                    width: 30/defaultDeviceSize.width * deviceSize.width,
                     color: Colors.black87,
-                    margin: EdgeInsets.only(top: 6),
+                    margin: EdgeInsets.only(top: 6/defaultDeviceSize.height * deviceSize.height),
                   ),
                 ],
               ),
             ),
             // Team Members Grid
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
+              padding: EdgeInsets.symmetric(horizontal: 32/defaultDeviceSize.width * deviceSize.width),
               child: Column(
                 children: [
                   // First Row of team members
@@ -332,7 +340,7 @@ class TeamPage extends StatelessWidget {
               ),
             ),
             // Bottom Navigation Bar - appears only at the end
-            SizedBox(height: 60),
+            SizedBox(height: 60/defaultDeviceSize.height * deviceSize.height),
             BotNav(), // This will be at the end of the page
           ],
         ),
@@ -396,14 +404,14 @@ class _TeamMemberCardState extends State<TeamMemberCard> {
     final HoverController hoverController = Get.put(HoverController());
 
     return Container(
-      width: 375, // Set fixed width for consistent sizing
+      width: 375/defaultDeviceSize.width * deviceSize.width, // Set fixed width for consistent sizing
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start, // Left-align content
         children: [
           // Square Image Container
           Container(
-            width: 375,
-            height: 400,
+            width: 375/defaultDeviceSize.width * deviceSize.width,
+            height: 400/defaultDeviceSize.height * deviceSize.height,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8), // Slightly rounded corners
               image: DecorationImage(
@@ -413,12 +421,12 @@ class _TeamMemberCardState extends State<TeamMemberCard> {
               color: Colors.grey[200],
             ),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: 12/defaultDeviceSize.height * deviceSize.height),
           // Name Text (left-aligned)
           Text(
             widget.name.toUpperCase(),
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 24 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
               fontWeight: FontWeight.w800,
               color: Colors.black87,
               fontFamily: 'Cormorant', // Set the desired font
@@ -428,13 +436,13 @@ class _TeamMemberCardState extends State<TeamMemberCard> {
           Text(
             widget.role,
             style: TextStyle(
-              fontSize: 22,
+              fontSize: 22 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
               color: Color.fromRGBO(11, 71, 222, 1),
               fontWeight: FontWeight.w900,
               fontFamily: 'Cormorant', // Set the desired font
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 8/defaultDeviceSize.height * deviceSize.height),
           // Icons Row (Email, LinkedIn) left-aligned
           Row(
             children: [
@@ -445,14 +453,14 @@ class _TeamMemberCardState extends State<TeamMemberCard> {
                       onTap: () => launch('mailto:${widget.emailLink}'),
                       child: Icon(
                         Icons.email,
-                        size: 30,
+                        size: 30 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
                         color: hoverController.isHoveredEmail.value
                             ? Color.fromARGB(255, 11, 53, 221)
                             : Colors.black87,
                       ),
                     ),
                   )),
-              SizedBox(width: 8),
+              SizedBox(width: 8/defaultDeviceSize.width * deviceSize.width),
               Obx(() => MouseRegion(
                     onEnter: (_) => hoverController.toggleLinkedInHover(true),
                     onExit: (_) => hoverController.toggleLinkedInHover(false),
@@ -460,7 +468,7 @@ class _TeamMemberCardState extends State<TeamMemberCard> {
                       onTap: () => launch(widget.linkedinLink),
                       child: FaIcon(
                         FontAwesomeIcons.linkedin,
-                        size: 30,
+                        size: 30 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
                         color: hoverController.isHoveredLinkedIn.value
                             ? Color.fromARGB(255, 11, 53, 221)
                             : Colors.black87,

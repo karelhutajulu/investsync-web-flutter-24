@@ -32,10 +32,9 @@ class NewsletterPage extends StatelessWidget {
                       ArticleCard(
                         article: article,
                         onTap: () {
-                          print('Article tapped: ${article.title}');
-                           // Use GetX routing to navigate
-                          Get.to(() => ArticleDetailPage(article: article));
+                          Get.toNamed("/newsletter/${article.id}"); // Correct navigation
                         },
+                        destinationLink: "${Uri.base.origin}/newsletter/${article.id}", // Shareable link
                       ),
                       SizedBox(height: 30),
                     ],

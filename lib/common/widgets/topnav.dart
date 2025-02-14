@@ -6,13 +6,21 @@ import 'package:investsyncwebsite/pages/team_page.dart';
 import 'package:investsyncwebsite/pages/portfolio_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CustomNavigationBar extends StatelessWidget {
+final Size defaultDeviceSize = Size(1536.0, 729.6);
+Size deviceSize = Size(0, 0); // Default size
+
+class CustomNavigationBar extends StatefulWidget {
   final String activePage; // Track the active page
 
   const CustomNavigationBar({Key? key, required this.activePage})
       : super(key: key);
 
-  // Define the Fade Transition using GetX
+  @override
+  _CustomNavigationBarState createState() => _CustomNavigationBarState();
+}
+
+class _CustomNavigationBarState extends State<CustomNavigationBar> {
+    // Define the Fade Transition using GetX
   PageRouteBuilder _buildPageRoute(Widget page) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => page,
@@ -26,10 +34,17 @@ class CustomNavigationBar extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    deviceSize = MediaQuery.of(context).size;
+
     return Container(
-      height: 110.0,
-      padding: EdgeInsets.symmetric(horizontal: 100),
+      height: 110/defaultDeviceSize.height * deviceSize.height,
+      padding: EdgeInsets.symmetric(horizontal: 100/defaultDeviceSize.width * deviceSize.width),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -46,55 +61,47 @@ class CustomNavigationBar extends StatelessWidget {
         children: [
           Image.asset(
             'assets/logos/investsync-logo.jpg',
-            height: 60.0,
+            height: 60/defaultDeviceSize.height * deviceSize.height,
           ),
           Row(
             children: [
               NavBarItem(
                 title: 'Home',
                 isActive:
-                    activePage == 'Home', // Check if this is the active page
+                    widget.activePage == 'Home', // Check if this is the active page
                 onTap: () {
                   // Using GetX to navigate with a fade transition
-                  Get.offAll(() => HomePage(),
-                      transition: Transition.fade,
-                      duration: Duration(milliseconds: 500));
+                  Get.toNamed("/");
                 },
               ),
-              SizedBox(width: 20),
+              SizedBox(width: 20/defaultDeviceSize.width * deviceSize.width),
               NavBarItem(
                 title: 'Team',
                 isActive:
-                    activePage == 'Team', // Check if this is the active page
+                    widget.activePage == 'Team', // Check if this is the active page
                 onTap: () {
-                  Get.offAll(() => TeamPage(),
-                      transition: Transition.fade,
-                      duration: Duration(milliseconds: 500));
+                  Get.toNamed("/team");
                 },
               ),
-              SizedBox(width: 20),
+              SizedBox(width: 20/defaultDeviceSize.width * deviceSize.width),
               NavBarItem(
                 title: 'Newsletter',
-                isActive: activePage ==
+                isActive: widget.activePage ==
                     'Newsletter', // Check if this is the active page
                 onTap: () {
-                  Get.offAll(() => NewsletterPage(),
-                      transition: Transition.fade,
-                      duration: Duration(milliseconds: 500));
+                  Get.toNamed("/newsletter");
                 },
               ),
-              SizedBox(width: 20),
+              SizedBox(width: 20/defaultDeviceSize.width * deviceSize.width),
               NavBarItem(
                 title: 'Portfolio',
-                isActive: activePage ==
+                isActive: widget.activePage ==
                     'Portfolio', // Check if this is the active page
                 onTap: () {
-                  Get.offAll(() => PortfolioPage(),
-                      transition: Transition.fade,
-                      duration: Duration(milliseconds: 500));
+                  Get.toNamed("/portfolio");
                 },
               ),
-              SizedBox(width: 20),
+              SizedBox(width: 20/defaultDeviceSize.width * deviceSize.width),
               JoinButton(),
             ],
           ),
@@ -125,11 +132,12 @@ class _NavBarItemState extends State<NavBarItem> {
 
   @override
   Widget build(BuildContext context) {
+    
     return MouseRegion(
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: EdgeInsets.symmetric(horizontal: 16.0 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height))),
         child: GestureDetector(
           onTap: widget.onTap,
           child: AnimatedDefaultTextStyle(
@@ -141,7 +149,7 @@ class _NavBarItemState extends State<NavBarItem> {
                   : isHovered
                       ? Color.fromARGB(255, 11, 53, 221) // Hover color
                       : Colors.black, // Default color
-              fontSize: 30,
+              fontSize: 30 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
               fontFamily: 'Typold',
               fontWeight: FontWeight.w800,
               letterSpacing: -0.5,
@@ -177,7 +185,7 @@ class _JoinButtonState extends State<JoinButton> {
               : Color.fromARGB(255, 11, 53, 221), // Default color
           borderRadius: BorderRadius.circular(30), // Maintain the pill shape
         ),
-        padding: EdgeInsets.symmetric(vertical: 7, horizontal: 35),
+        padding: EdgeInsets.symmetric(vertical: 7/defaultDeviceSize.height * deviceSize.height, horizontal: 35/defaultDeviceSize.width * deviceSize.width),
         child: GestureDetector(
           onTap: () {
             final url = Uri.parse('https://forms.gle/kyek727fVJ38ABzt6');
@@ -187,7 +195,7 @@ class _JoinButtonState extends State<JoinButton> {
             'Join',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 26,
+              fontSize: 26 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
               fontFamily: 'Typold',
               fontWeight: FontWeight.w600,
               letterSpacing: -0.5,

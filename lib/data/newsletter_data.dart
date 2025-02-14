@@ -4,6 +4,7 @@ class Article {
   final String date;
   final String readTime;
   final String title;
+  final int id;
   final String description;
   final String content;
   final String author;
@@ -17,6 +18,7 @@ class Article {
     required this.date,
     required this.readTime,
     required this.title,
+    required this.id,
     required this.description,
     required this.content,
     required this.author,
@@ -34,6 +36,7 @@ final List<Article> articles = [
     date: 'May 16',
     readTime: '3 min read',
     title: 'Inflation and Interest Rate Challenges in South Korea',
+    id: 0,
     description:
         'Key Takeaways: Interest Rate Increases: South Korea\'s interest rate is at 3.5% in response to U.S. Federal Reserve hikes. Adjustments aim...',
     content: '''
@@ -70,6 +73,7 @@ final List<Article> articles = [
     date: 'June 5',
     readTime: '5 min read',
     title: 'The Future of AI and Automation in Tech',
+    id: 1,
     description:
         'Key Takeaways: The rapid development of AI is reshaping industries across the globe, from healthcare to finance...',
     content: '''
@@ -106,6 +110,7 @@ final List<Article> articles = [
     date: 'July 10',
     readTime: '4 min read',
     title: 'Energy Solutions for a Sustainable Future',
+    id: 2,
     description:
         'Key Takeaways: The transition to renewable energy sources is becoming more critical in reducing carbon emissions and ensuring energy security...',
     content: '''
@@ -142,6 +147,7 @@ final List<Article> articles = [
     date: 'August 20',
     readTime: '6 min read',
     title: 'The Impact of Global Trade Tensions on Emerging Markets',
+    id: 3,
     description:
         'Key Takeaways: Trade conflicts between major economies are influencing the stability of emerging markets, with potential long-term consequences...',
     content: '''
