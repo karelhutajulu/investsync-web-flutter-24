@@ -15,7 +15,7 @@ class NewsletterPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(
             110.0), // Set the height of your custom navigation bar
-        child: CustomNavigationBar(activePage: 'Newsletter'),
+        child: DesktopNavigationBar(activePage: 'Newsletter'),
       ),
       body: SingleChildScrollView(
         child: Column(

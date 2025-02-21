@@ -92,7 +92,7 @@ class ArticleDetailPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(110.0),
-        child: CustomNavigationBar(activePage: 'Newsletter'),
+        child: DesktopNavigationBar(activePage: 'Newsletter'),
       ),
       body: SingleChildScrollView(
         child: Padding(

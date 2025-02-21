@@ -14,19 +14,26 @@ class TeamPage extends StatefulWidget {
 }
 
 class _TeamPageState extends State<TeamPage> {
+  bool _sideNavOpen = false;
+
+  void _toggleSideNav() {
+    setState(() {
+      _sideNavOpen = (_sideNavOpen == false) ? true : false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(110.0/defaultDeviceSize.height * deviceSize.height),
-        child: CustomNavigationBar(activePage: 'Team'), // Use the custom navigation bar
-      ),
-      body: SingleChildScrollView(
+      body: Stack(
+        children: [
+                SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            NavBar(activePage: 'Team', onSideNavPressed: _toggleSideNav),
             // Header Section with Background Image
             Stack(
               children: [
@@ -376,6 +383,81 @@ class _TeamPageState extends State<TeamPage> {
           ],
         ),
       ),
+      
+          if (_sideNavOpen)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: GestureDetector(
+                onTap: _toggleSideNav, // Close the drawer if tapped outside
+                child: Container(
+                  color: Colors.black.withOpacity(0.35), // Grey opacity box
+                ),
+              ),
+            ),
+          if (_sideNavOpen)
+            Positioned(
+              top: 0,
+              left: 0,
+              bottom: 0,
+              width: 300, // Width of the drawer
+              child: GestureDetector(
+                onTap: _toggleSideNav, // Close the drawer if tapped outside
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        spreadRadius: 2.5,
+                        blurRadius: 2.5,
+                        offset: Offset(0, 2.5),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(32.0),
+                        child: Image.asset('assets/logos/investsync-logo.jpg'),
+                      ),
+                      NavBarItem(
+                        title: 'Home', 
+                        onTap: () {
+                          _toggleSideNav(); // Close drawer after selection
+                          Get.toNamed('/');
+                        },
+                      ),
+                      NavBarItem(
+                        title: 'Team', 
+                        onTap: () {
+                          _toggleSideNav(); // Close drawer after selection
+                          Get.toNamed('/team');
+                        },
+                      ),
+                      NavBarItem(
+                        title: 'Newsletter', 
+                        onTap: () {
+                          _toggleSideNav(); // Close drawer after selection
+                          Get.toNamed('/newsletter');
+                        },
+                      ),
+                      NavBarItem(
+                        title: 'Portfolio', 
+                        onTap: () {
+                          _toggleSideNav(); // Close drawer after selection
+                          Get.toNamed('/portfolio');
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+        ],
+      )
     );
   }
 }

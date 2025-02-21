@@ -19,7 +19,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(
             110.0/defaultDeviceSize.height * deviceSize.height), // Set the height of your custom navigation bar
-        child: CustomNavigationBar(activePage: 'Portfolio'),
+        child: DesktopNavigationBar(activePage: 'Portfolio'),
       ),
       body: Center(
         // Placeholder for now

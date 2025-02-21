@@ -52,7 +52,7 @@ class _ArticleCardState extends State<ArticleCard> {
                 children: [
                   Image.asset(
                     widget.article.imagePath,
-                    width: parentWidth * 0.4,
+                    width: parentWidth * 0.475,
                     height: parentHeight,
                     fit: BoxFit.cover,
                   ),
@@ -71,8 +71,8 @@ class _ArticleCardState extends State<ArticleCard> {
                               ClipOval(
                                 child: Image.asset(
                                   'assets/logos/logo-icon.png',
-                                  width: 25 / defaultDeviceSize.width * deviceSize.width,
-                                  height: 25 / defaultDeviceSize.height * deviceSize.height,
+                                  width: 35 / defaultDeviceSize.width * deviceSize.width,
+                                  height: 35 / defaultDeviceSize.height * deviceSize.height,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -84,7 +84,7 @@ class _ArticleCardState extends State<ArticleCard> {
                                     widget.article.teamName,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 12 *
+                                      fontSize: 15 *
                                           (16 / 25 * (deviceSize.width / defaultDeviceSize.width) +
                                               9 / 25 * (deviceSize.height / defaultDeviceSize.height)),
                                     ),
@@ -93,7 +93,7 @@ class _ArticleCardState extends State<ArticleCard> {
                                   Text(
                                     '${widget.article.date} • ${widget.article.readTime}',
                                     style: TextStyle(
-                                      fontSize: 10 *
+                                      fontSize: 14 *
                                           (16 / 25 * (deviceSize.width / defaultDeviceSize.width) +
                                               9 / 25 * (deviceSize.height / defaultDeviceSize.height)),
                                       color: Colors.black,
@@ -122,7 +122,7 @@ class _ArticleCardState extends State<ArticleCard> {
                             curve: Curves.easeInOut,
                             style: TextStyle(
                               color: isHovered ? Color.fromARGB(255, 11, 53, 221) : Colors.black,
-                              fontSize: 22 *
+                              fontSize: 25 *
                                   (16 / 25 * (deviceSize.width / defaultDeviceSize.width) +
                                       9 / 25 * (deviceSize.height / defaultDeviceSize.height)),
                               fontFamily: 'Cormorant',
@@ -139,7 +139,7 @@ class _ArticleCardState extends State<ArticleCard> {
                               color: isHovered ? Color.fromARGB(255, 11, 53, 221) : Colors.black,
                               fontFamily: 'Typold',
                               fontWeight: FontWeight.w600,
-                              fontSize: 14 *
+                              fontSize: 16 *
                                   (16 / 25 * (deviceSize.width / defaultDeviceSize.width) +
                                       9 / 25 * (deviceSize.height / defaultDeviceSize.height)),
                               height: 1.5 / defaultDeviceSize.height * deviceSize.height,

@@ -9,50 +9,49 @@ import 'package:url_launcher/url_launcher.dart';
 final Size defaultDeviceSize = Size(1536.0, 729.6);
 Size deviceSize = Size(0, 0); // Default size
 
-class CustomNavigationBar extends StatefulWidget {
+class NavBar extends StatelessWidget {
   final String activePage; // Track the active page
-
-  const CustomNavigationBar({Key? key, required this.activePage})
-      : super(key: key);
-
-  @override
-  _CustomNavigationBarState createState() => _CustomNavigationBarState();
-}
-
-class _CustomNavigationBarState extends State<CustomNavigationBar> {
-    // Define the Fade Transition using GetX
-  PageRouteBuilder _buildPageRoute(Widget page) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => page,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(animation);
-        return FadeTransition(opacity: fadeAnimation, child: child);
-      },
-      transitionDuration:
-          Duration(milliseconds: 500), // Fade transition duration
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  final VoidCallback onSideNavPressed;
+  
+  const NavBar({super.key, required this.activePage, required this.onSideNavPressed});
 
   @override
   Widget build(BuildContext context) {
-    deviceSize = MediaQuery.of(context).size;
+    // TODO: implement build
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth > 1150) {
+          return DesktopNavigationBar(activePage: activePage);
+        }
+        else if (constraints.maxWidth > 650) {
+          return MobileNavigationBar1(activePage: activePage, onSideNavPressed: onSideNavPressed);
+        }
+        else {
+          return MobileNavigationBar2(activePage: activePage, onSideNavPressed: onSideNavPressed);
+        }
+      },
+    );
+  }
+}
 
+class DesktopNavigationBar extends StatelessWidget {
+  final String activePage; // Track the active page
+  
+  const DesktopNavigationBar({super.key, required this.activePage});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      height: 110/defaultDeviceSize.height * deviceSize.height,
-      padding: EdgeInsets.symmetric(horizontal: 100/defaultDeviceSize.width * deviceSize.width),
+      height: 110,
+      padding: EdgeInsets.symmetric(horizontal: 50),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: Offset(0, 2),
+            color: Colors.black.withOpacity(0.25),
+            spreadRadius: 2.5,
+            blurRadius: 2.5,
+            offset: Offset(0, 2.5),
           ),
         ],
       ),
@@ -61,48 +60,138 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
         children: [
           Image.asset(
             'assets/logos/investsync-logo.jpg',
-            height: 60/defaultDeviceSize.height * deviceSize.height,
+            height: 65,
           ),
           Row(
             children: [
               NavBarItem(
                 title: 'Home',
                 isActive:
-                    widget.activePage == 'Home', // Check if this is the active page
+                    activePage == 'Home', // Check if this is the active page
                 onTap: () {
                   // Using GetX to navigate with a fade transition
                   Get.toNamed("/");
                 },
               ),
-              SizedBox(width: 20/defaultDeviceSize.width * deviceSize.width),
+              SizedBox(width: 20),
               NavBarItem(
                 title: 'Team',
                 isActive:
-                    widget.activePage == 'Team', // Check if this is the active page
+                    activePage == 'Team', // Check if this is the active page
                 onTap: () {
                   Get.toNamed("/team");
                 },
               ),
-              SizedBox(width: 20/defaultDeviceSize.width * deviceSize.width),
+              SizedBox(width: 20),
               NavBarItem(
                 title: 'Newsletter',
-                isActive: widget.activePage ==
+                isActive: activePage ==
                     'Newsletter', // Check if this is the active page
                 onTap: () {
                   Get.toNamed("/newsletter");
                 },
               ),
-              SizedBox(width: 20/defaultDeviceSize.width * deviceSize.width),
+              SizedBox(width: 20),
               NavBarItem(
                 title: 'Portfolio',
-                isActive: widget.activePage ==
+                isActive: activePage ==
                     'Portfolio', // Check if this is the active page
                 onTap: () {
                   Get.toNamed("/portfolio");
                 },
               ),
-              SizedBox(width: 20/defaultDeviceSize.width * deviceSize.width),
+              SizedBox(width: 20),
               JoinButton(),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MobileNavigationBar1 extends StatelessWidget {
+  final String activePage; // Track the active page
+  final VoidCallback onSideNavPressed;
+  
+  const MobileNavigationBar1({super.key, required this.activePage, required this.onSideNavPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 110,
+      padding: EdgeInsets.symmetric(horizontal: 50),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            spreadRadius: 2.5,
+            blurRadius: 2.5,
+            offset: Offset(0, 2.5),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(
+            'assets/logos/investsync-logo.jpg',
+            height: 65,
+          ),
+          Row(
+            children: [
+              JoinButton(),
+              SizedBox(width: 20),
+              IconButton(
+                onPressed: onSideNavPressed,
+                icon: Icon(Icons.menu)
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MobileNavigationBar2 extends StatelessWidget {
+  final String activePage; // Track the active page
+  final VoidCallback onSideNavPressed;
+  
+  const MobileNavigationBar2({super.key, required this.activePage, required this.onSideNavPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 110,
+      padding: EdgeInsets.symmetric(horizontal: 45),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            spreadRadius: 2.5,
+            blurRadius: 2.5,
+            offset: Offset(0, 2.5),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(
+            'assets/logos/logo-icon.png',
+            height: 75,
+          ),
+          Row(
+            children: [
+              JoinButton(),
+              SizedBox(width: 20),
+              IconButton(
+                onPressed: onSideNavPressed,
+                icon: Icon(Icons.menu)
+              )
             ],
           ),
         ],
@@ -132,12 +221,11 @@ class _NavBarItemState extends State<NavBarItem> {
 
   @override
   Widget build(BuildContext context) {
-    
     return MouseRegion(
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height))),
+        padding: EdgeInsets.all(16.0),
         child: GestureDetector(
           onTap: widget.onTap,
           child: AnimatedDefaultTextStyle(
@@ -149,8 +237,8 @@ class _NavBarItemState extends State<NavBarItem> {
                   : isHovered
                       ? Color.fromARGB(255, 11, 53, 221) // Hover color
                       : Colors.black, // Default color
-              fontSize: 30 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
-              fontFamily: 'Typold',
+              fontSize: 30,
+              fontFamily: 'Cormorant',
               fontWeight: FontWeight.w800,
               letterSpacing: -0.5,
             ),
@@ -185,7 +273,7 @@ class _JoinButtonState extends State<JoinButton> {
               : Color.fromARGB(255, 11, 53, 221), // Default color
           borderRadius: BorderRadius.circular(30), // Maintain the pill shape
         ),
-        padding: EdgeInsets.symmetric(vertical: 7/defaultDeviceSize.height * deviceSize.height, horizontal: 35/defaultDeviceSize.width * deviceSize.width),
+        padding: EdgeInsets.symmetric(vertical: 7, horizontal: 35),
         child: GestureDetector(
           onTap: () {
             final url = Uri.parse('https://forms.gle/kyek727fVJ38ABzt6');
@@ -195,8 +283,8 @@ class _JoinButtonState extends State<JoinButton> {
             'Join',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 26 * (16/25 * (deviceSize.width / defaultDeviceSize.width) + 9/25 * (deviceSize.height / defaultDeviceSize.height)),
-              fontFamily: 'Typold',
+              fontSize: 26,
+              fontFamily: 'Cormorant',
               fontWeight: FontWeight.w600,
               letterSpacing: -0.5,
             ),
