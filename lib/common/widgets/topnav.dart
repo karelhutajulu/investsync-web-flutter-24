@@ -1,43 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:investsyncwebsite/pages/home_page.dart';
-import 'package:investsyncwebsite/pages/newsletter_page.dart';
-import 'package:investsyncwebsite/pages/team_page.dart';
-import 'package:investsyncwebsite/pages/portfolio_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final Size defaultDeviceSize = Size(1536.0, 729.6);
-Size deviceSize = Size(0, 0); // Default size
+// final Size defaultDeviceSize = Size(1536.0, 729.6);
+// Size deviceSize = Size(0, 0); // Default size
 
-class NavBar extends StatelessWidget {
+class TopNav extends StatelessWidget {
   final String activePage; // Track the active page
   final VoidCallback onSideNavPressed;
   
-  const NavBar({super.key, required this.activePage, required this.onSideNavPressed});
+  const TopNav({super.key, required this.activePage, required this.onSideNavPressed});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 1150) {
-          return DesktopNavigationBar(activePage: activePage);
+          return DesktopTopNav(activePage: activePage);
         }
         else if (constraints.maxWidth > 650) {
-          return MobileNavigationBar1(activePage: activePage, onSideNavPressed: onSideNavPressed);
+          return TabletTopNav(activePage: activePage, onSideNavPressed: onSideNavPressed);
         }
         else {
-          return MobileNavigationBar2(activePage: activePage, onSideNavPressed: onSideNavPressed);
+          return MobileTopNav(activePage: activePage, onSideNavPressed: onSideNavPressed);
         }
       },
     );
   }
 }
 
-class DesktopNavigationBar extends StatelessWidget {
+class DesktopTopNav extends StatelessWidget {
   final String activePage; // Track the active page
   
-  const DesktopNavigationBar({super.key, required this.activePage});
+  const DesktopTopNav({super.key, required this.activePage});
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +105,11 @@ class DesktopNavigationBar extends StatelessWidget {
   }
 }
 
-class MobileNavigationBar1 extends StatelessWidget {
+class TabletTopNav extends StatelessWidget {
   final String activePage; // Track the active page
   final VoidCallback onSideNavPressed;
   
-  const MobileNavigationBar1({super.key, required this.activePage, required this.onSideNavPressed});
+  const TabletTopNav({super.key, required this.activePage, required this.onSideNavPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -155,11 +150,11 @@ class MobileNavigationBar1 extends StatelessWidget {
   }
 }
 
-class MobileNavigationBar2 extends StatelessWidget {
+class MobileTopNav extends StatelessWidget {
   final String activePage; // Track the active page
   final VoidCallback onSideNavPressed;
   
-  const MobileNavigationBar2({super.key, required this.activePage, required this.onSideNavPressed});
+  const MobileTopNav({super.key, required this.activePage, required this.onSideNavPressed});
 
   @override
   Widget build(BuildContext context) {
