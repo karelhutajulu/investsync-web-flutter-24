@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   social_media_buttons: ^1.0.0
-  visibility_detector: ^0.3.3
+  visibility_detector: ^0.4.0+2
   url_launcher: ^6.0.20
   font_awesome_flutter: ^10.1.0
   get: ^4.6.5
@@ -58,7 +58,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   url_launcher: ^6.0.20
-  flutter_lints: ^3.0.0
+  flutter_lints: ^5.0.0
   font_awesome_flutter: ^10.1.0
 
 flutter:
