@@ -1,37 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-// final Size defaultDeviceSize = Size(1536.0, 729.6);
-// Size deviceSize = Size(0, 0); // Default size
+import 'package:investsyncwebsite/controllers/sidebar_controller.dart'; // Import your SidebarController
 
 class TopNav extends StatelessWidget {
-  final String activePage; // Track the active page
-  final VoidCallback onSideNavPressed;
-  
-  const TopNav({super.key, required this.activePage, required this.onSideNavPressed});
+  final String activePage;
+
+  const TopNav({
+    super.key,
+    required this.activePage,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final SidebarController sidebarController =
+        Get.find(); // Find the SidebarController
+
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 1150) {
           return DesktopTopNav(activePage: activePage);
-        }
-        else if (constraints.maxWidth > 650) {
-          return TabletTopNav(activePage: activePage, onSideNavPressed: onSideNavPressed);
-        }
-        else {
-          return MobileTopNav(activePage: activePage, onSideNavPressed: onSideNavPressed);
+        } else if (constraints.maxWidth > 650) {
+          return TabletTopNav(
+              activePage: activePage, sidebarController: sidebarController);
+        } else {
+          return MobileTopNav(
+              activePage: activePage, sidebarController: sidebarController);
         }
       },
     );
   }
 }
 
+class _TopNavItem extends StatelessWidget {
+  final String title;
+  final String route;
+  final bool active;
+
+  const _TopNavItem({
+    required this.title,
+    required this.route,
+    required this.active,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Get.toNamed(route),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: active ? Colors.blue : Colors.black,
+        ),
+      ),
+    );
+  }
+}
+
 class DesktopTopNav extends StatelessWidget {
-  final String activePage; // Track the active page
-  
+  final String activePage;
+
   const DesktopTopNav({super.key, required this.activePage});
 
   @override
@@ -53,50 +82,27 @@ class DesktopTopNav extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset(
-            'assets/logos/investsync-logo.jpg',
-            height: 65,
-          ),
+          // Left side: Logo
+          Image.asset('assets/logos/investsync-logo.jpg', height: 65),
+
+          // Right side: Navigation items
           Row(
             children: [
-              NavBarItem(
-                title: 'Home',
-                isActive:
-                    activePage == 'Home', // Check if this is the active page
-                onTap: () {
-                  // Using GetX to navigate with a fade transition
-                  Get.toNamed("/");
-                },
-              ),
+              _TopNavItem(
+                  title: 'Home', route: '/', active: activePage == 'Home'),
               SizedBox(width: 20),
-              NavBarItem(
-                title: 'Team',
-                isActive:
-                    activePage == 'Team', // Check if this is the active page
-                onTap: () {
-                  Get.toNamed("/team");
-                },
-              ),
+              _TopNavItem(
+                  title: 'Team', route: '/team', active: activePage == 'Team'),
               SizedBox(width: 20),
-              NavBarItem(
-                title: 'Newsletter',
-                isActive: activePage ==
-                    'Newsletter', // Check if this is the active page
-                onTap: () {
-                  Get.toNamed("/newsletter");
-                },
-              ),
+              _TopNavItem(
+                  title: 'Newsletter',
+                  route: '/newsletter',
+                  active: activePage == 'Newsletter'),
               SizedBox(width: 20),
-              NavBarItem(
-                title: 'Portfolio',
-                isActive: activePage ==
-                    'Portfolio', // Check if this is the active page
-                onTap: () {
-                  Get.toNamed("/portfolio");
-                },
-              ),
-              SizedBox(width: 20),
-              JoinButton(),
+              _TopNavItem(
+                  title: 'Portfolio',
+                  route: '/portfolio',
+                  active: activePage == 'Portfolio'),
             ],
           ),
         ],
@@ -106,55 +112,47 @@ class DesktopTopNav extends StatelessWidget {
 }
 
 class TabletTopNav extends StatelessWidget {
-  final String activePage; // Track the active page
-  final VoidCallback onSideNavPressed;
-  
-  const TabletTopNav({super.key, required this.activePage, required this.onSideNavPressed});
+  final String activePage;
+  final SidebarController sidebarController;
+
+  const TabletTopNav({
+    super.key,
+    required this.activePage,
+    required this.sidebarController,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 110,
-      padding: EdgeInsets.symmetric(horizontal: 50),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            spreadRadius: 2.5,
-            blurRadius: 2.5,
-            offset: Offset(0, 2.5),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.asset(
-            'assets/logos/investsync-logo.jpg',
-            height: 65,
-          ),
-          Row(
-            children: [
-              JoinButton(),
-              SizedBox(width: 20),
-              IconButton(
-                onPressed: onSideNavPressed,
-                icon: Icon(Icons.menu)
-              )
-            ],
-          ),
-        ],
-      ),
-    );
+    return _TopNavWithMenu(
+        activePage: activePage, sidebarController: sidebarController);
   }
 }
 
 class MobileTopNav extends StatelessWidget {
-  final String activePage; // Track the active page
-  final VoidCallback onSideNavPressed;
-  
-  const MobileTopNav({super.key, required this.activePage, required this.onSideNavPressed});
+  final String activePage;
+  final SidebarController sidebarController;
+
+  const MobileTopNav({
+    super.key,
+    required this.activePage,
+    required this.sidebarController,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _TopNavWithMenu(
+        activePage: activePage, sidebarController: sidebarController);
+  }
+}
+
+class _TopNavWithMenu extends StatelessWidget {
+  final String activePage;
+  final SidebarController sidebarController;
+
+  const _TopNavWithMenu({
+    required this.activePage,
+    required this.sidebarController,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -175,116 +173,21 @@ class MobileTopNav extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset(
-            'assets/logos/logo-icon.png',
-            height: 75,
-          ),
+          Image.asset('assets/logos/logo-icon.png', height: 75),
           Row(
             children: [
-              JoinButton(),
-              SizedBox(width: 20),
               IconButton(
-                onPressed: onSideNavPressed,
-                icon: Icon(Icons.menu)
-              )
+                onPressed: sidebarController.toggle,
+                icon: Obx(() => AnimatedSwitcher(
+                      duration: Duration(milliseconds: 200),
+                      child: sidebarController.isOpen.value
+                          ? Icon(Icons.close, key: ValueKey('close'))
+                          : Icon(Icons.menu, key: ValueKey('menu')),
+                    )),
+              ),
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class NavBarItem extends StatefulWidget {
-  final String title;
-  final VoidCallback onTap;
-  final bool isActive;
-
-  const NavBarItem({
-    Key? key,
-    required this.title,
-    required this.onTap,
-    this.isActive = false, // Default to inactive
-  }) : super(key: key);
-
-  @override
-  _NavBarItemState createState() => _NavBarItemState();
-}
-
-class _NavBarItemState extends State<NavBarItem> {
-  bool isHovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => isHovered = true),
-      onExit: (_) => setState(() => isHovered = false),
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: GestureDetector(
-          onTap: widget.onTap,
-          child: AnimatedDefaultTextStyle(
-            duration: Duration(milliseconds: 150), // Duration of the animation
-            curve: Curves.easeInOut, // Smooth animation curve
-            style: TextStyle(
-              color: widget.isActive
-                  ? Color.fromARGB(255, 11, 53, 221) // Active color
-                  : isHovered
-                      ? Color.fromARGB(255, 11, 53, 221) // Hover color
-                      : Colors.black, // Default color
-              fontSize: 30,
-              fontFamily: 'Cormorant',
-              fontWeight: FontWeight.w800,
-              letterSpacing: -0.5,
-            ),
-            child: Text(widget.title),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class JoinButton extends StatefulWidget {
-  @override
-  _JoinButtonState createState() => _JoinButtonState();
-}
-
-class _JoinButtonState extends State<JoinButton> {
-  bool isHovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => isHovered = true),
-      onExit: (_) => setState(() => isHovered = false),
-      child: AnimatedContainer(
-        duration: Duration(
-            milliseconds: 150), // Duration of the color change animation
-        curve: Curves.easeInOut, // Smooth curve for the animation
-        decoration: BoxDecoration(
-          color: isHovered
-              ? Color.fromARGB(255, 11, 53, 110) // Hover color
-              : Color.fromARGB(255, 11, 53, 221), // Default color
-          borderRadius: BorderRadius.circular(30), // Maintain the pill shape
-        ),
-        padding: EdgeInsets.symmetric(vertical: 7, horizontal: 35),
-        child: GestureDetector(
-          onTap: () {
-            final url = Uri.parse('https://forms.gle/kyek727fVJ38ABzt6');
-            launchUrl(url);
-          },
-          child: Text(
-            'Join',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 26,
-              fontFamily: 'Cormorant',
-              fontWeight: FontWeight.w600,
-              letterSpacing: -0.5,
-            ),
-          ),
-        ),
       ),
     );
   }
