@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:investsyncwebsite/data/newsletter_data.dart';
-import 'package:investsyncwebsite/pages/newsletter_detail_page.dart';
-import 'package:investsyncwebsite/pages/portfolio_page.dart';
-import 'pages/home_page.dart'; // Import the homepage or initial screen
-import 'pages/team_page.dart'; // Import the Teams page
-import 'pages/newsletter_page.dart'; // Import the Newsletter page
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+
+import 'package:investsyncwebsite/controllers/sidebar_controller.dart'; // ADD THIS
+import 'package:investsyncwebsite/pages/home_page.dart';
+import 'package:investsyncwebsite/pages/team_page.dart';
+import 'package:investsyncwebsite/pages/newsletter_page.dart';
+import 'package:investsyncwebsite/pages/portfolio_page.dart';
+import 'package:investsyncwebsite/pages/newsletter_detail_page.dart';
+import 'package:investsyncwebsite/data/newsletter_data.dart';
 
 void main() {
   usePathUrlStrategy();
+  Get.put(SidebarController()); // 🔥 ADD THIS to initialize SidebarController!
   runApp(MyApp());
 }
 
@@ -32,36 +35,34 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      debugShowCheckedModeBanner:
-          false, // Set this to false to remove the debug banner
-      home: HomePage(), // Set your homepage here
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
       getPages: [
-        // Define routes here using GetPage with transition and duration
         GetPage(
           name: '/',
           page: () => HomePage(),
-          transition: Transition.fade, // Set fade transition
-          transitionDuration: Duration(milliseconds: 250), // Optional duration
+          transition: Transition.fade,
+          transitionDuration: Duration(milliseconds: 250),
         ),
         GetPage(
           name: '/team',
           page: () => TeamPage(),
-          transition: Transition.fade, // Set fade transition
-          transitionDuration: Duration(milliseconds: 250), // Optional duration
+          transition: Transition.fade,
+          transitionDuration: Duration(milliseconds: 250),
         ),
         GetPage(
           name: '/newsletter',
           page: () => NewsletterPage(),
-          transition: Transition.fade, // Set fade transition
-          transitionDuration: Duration(milliseconds: 250), // Optional duration
+          transition: Transition.fade,
+          transitionDuration: Duration(milliseconds: 250),
         ),
         GetPage(
-          name: "/portfolio",
+          name: '/portfolio',
           page: () => PortfolioPage(),
           transition: Transition.fade,
-          transitionDuration: Duration(microseconds: 250)
+          transitionDuration: Duration(milliseconds: 250),
         ),
-        ...generateArticleRoutes()
+        ...generateArticleRoutes(),
       ],
     );
   }

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:investsyncwebsite/common/widgets/sidenav.dart';
-import 'package:investsyncwebsite/common/widgets/topnav.dart'; // Import the CustomNavigationBar
-import 'package:investsyncwebsite/common/widgets/botnav.dart'; // Import the BotNav
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Import FontAwesome Icons
+import 'package:investsyncwebsite/common/widgets/topnav.dart';
+import 'package:investsyncwebsite/common/widgets/botnav.dart';
+import 'package:investsyncwebsite/common/widgets/member_card.dart';
 import 'package:investsyncwebsite/data/team_data.dart';
-import 'package:url_launcher/url_launcher.dart'; // Import URL Launcher for opening links
+import 'package:investsyncwebsite/controllers/sidebar_controller.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-// final Size defaultDeviceSize = Size(1536.0, 729.6); // Default size
-// Size deviceSize = Size(0, 0);
+double _scrollOffset = 0.0;
 
-// Helper functions to chunk list to separate lists with each list having k elements
 List<List<TeamMember>> chunkList(List<TeamMember> list, int k) {
   List<List<TeamMember>> chunks = [];
   for (int i = 0; i < list.length; i += k) {
@@ -18,24 +19,15 @@ List<List<TeamMember>> chunkList(List<TeamMember> list, int k) {
   return chunks;
 }
 
-double _scrollOffset = 0.0; // Store the current scroll offset
-
 class TeamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _scrollOffset = 0.0;
+    final screenWidth = MediaQuery.of(context).size.width;
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth > 1350) {
-          return DesktopTeamPage(); // Pass the offset
-        } else if (constraints.maxWidth > 900) {
-          return TabletTeamPage(); // Pass the offset
-        } else {
-          return MobileTeamPage(); // Pass the offset
-        }
-      },
-    );
+    if (screenWidth > 1350) return DesktopTeamPage();
+    if (screenWidth > 900) return TabletTeamPage();
+    return MobileTeamPage();
   }
 }
 
@@ -45,37 +37,25 @@ class DesktopTeamPage extends StatefulWidget {
 }
 
 class _DesktopTeamPageState extends State<DesktopTeamPage> {
-  bool _sideNavOpen = false;
-  List<List<TeamMember>> rowsForBOD = chunkList(boardOfDirectors, 3); // split it into 3 elements per row
-  List<List<TeamMember>> rowsForIT = chunkList(investmentTeam, 3); // split it into 3 elements per row
+  final ScrollController _scrollController =
+      ScrollController(initialScrollOffset: _scrollOffset);
+  final SidebarController sidebarController = Get.put(SidebarController());
 
-  ScrollController _scrollController = ScrollController(initialScrollOffset: _scrollOffset);
-
-  // Toggle side navigation
-  void _toggleSideNav() {
-    setState(() {
-      _sideNavOpen = !_sideNavOpen;
-    });
-  }
+  List<List<TeamMember>> rowsForBOD = chunkList(boardOfDirectors, 3);
+  List<List<TeamMember>> rowsForIT = chunkList(investmentTeam, 3);
 
   @override
   void initState() {
     super.initState();
-    
-    // Adding listener to listen for scroll offset changes
-    _scrollController.addListener(_scrollListener);
+    _scrollController.addListener(() {
+      _scrollOffset = _scrollController.offset;
+    });
   }
 
   @override
   void dispose() {
-    // Always dispose of the controller when it's no longer needed
-    _scrollController.removeListener(_scrollListener);
     _scrollController.dispose();
     super.dispose();
-  }
-
-  void _scrollListener() {
-    _scrollOffset = _scrollController.offset;
   }
 
   @override
@@ -87,222 +67,38 @@ class _DesktopTeamPageState extends State<DesktopTeamPage> {
           Padding(
             padding: const EdgeInsets.only(top: 110),
             child: SingleChildScrollView(
-              controller: _scrollController, // Use the passed ScrollController
+              controller: _scrollController,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Header Section with Background Image
-                  Stack(
-                    children: [
-                      // Background Image
-                      Container(
-                        width: double.infinity,
-                        height: 250,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                                "assets/images/photos/golden_bull.png"), // Path to your background image
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      // "Meet the Team" Text Overlay
-                      Positioned.fill(
-                        child: Center(
-                          child: Text(
-                            "MEET THE TEAM",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 56,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Cormorant',
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(2, 2),
-                                  blurRadius: 5.0,
-                                  color: Colors.black.withOpacity(0.5),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // Board of Directors Title
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 48.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          "BOARD OF DIRECTORS",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 49,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                            fontFamily: 'Cormorant',
-                          ),
-                        ),
-                        Container(
-                          height: 2,
-                          width: 30,
-                          color: Colors.black87,
-                          margin: EdgeInsets.only(top: 6),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Team Members Grid for Board of Directors
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      children: [
-                        ...rowsForBOD.map((row) {
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Spacer(flex: 1),
-                                  ...row.map((member) {
-                                    return [
-                                      MemberCard(
-                                        name: member.name,
-                                        role: member.role,
-                                        imagePath: member.imagePath,
-                                        emailLink: member.emailLink,
-                                        linkedinLink: member.linkedInLink,
-                                      ),
-                                      Spacer(flex: 1), // Spacer after each MemberCard
-                                    ];
-                                  }).expand((element) => element).toList(),
-                                ],
-                              ),
-                              SizedBox(height: 60),
-                            ],
-                          );
-                        }).toList(),
-                      ],
-                    ),
-                  ),
-                  // Investment Team Title
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 48.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          "INVESTMENT TEAM",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 49,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                            fontFamily: 'Cormorant',
-                          ),
-                        ),
-                        Container(
-                          height: 2,
-                          width: 30,
-                          color: Colors.black87,
-                          margin: EdgeInsets.only(top: 6),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Team Members Grid for Investment Team
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      children: [
-                        ...rowsForIT.map((row) {
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Spacer(flex: 1),
-                                  ...row.map((member) {
-                                    return [
-                                      MemberCard(
-                                        name: member.name,
-                                        role: member.role,
-                                        imagePath: member.imagePath,
-                                        emailLink: member.emailLink,
-                                        linkedinLink: member.linkedInLink,
-                                      ),
-                                      Spacer(flex: 1), // Spacer after each MemberCard
-                                    ];
-                                  }).expand((element) => element).toList(),
-                                ],
-                              ),
-                              SizedBox(height: 60),
-                            ],
-                          );
-                        }).toList(),
-                      ],
-                    ),
-                  ),
+                  TeamHeader(),
+                  TeamSection(title: "BOARD OF DIRECTORS", rows: rowsForBOD),
+                  TeamSection(title: "INVESTMENT TEAM", rows: rowsForIT),
                   BottomNav(),
                 ],
               ),
             ),
           ),
-          Column(
-            children: [
-              TopNav(activePage: 'Team', onSideNavPressed: _toggleSideNav),
-            ],
-          ),
-          if (_sideNavOpen) SideNav(toggleSideNav: _toggleSideNav, activePage: 'Team'),
+          const TopNav(activePage: 'Team'),
+          Obx(() => sidebarController.isOpen.value
+              ? const SideNav(activePage: 'Team')
+              : const SizedBox.shrink()),
         ],
       ),
     );
   }
 }
 
-class TabletTeamPage extends StatefulWidget {
-  @override
-  _TabletTeamPageState createState() => _TabletTeamPageState();
-}
-
-class _TabletTeamPageState extends State<TabletTeamPage> {
-    bool _sideNavOpen = false;
-  List<List<TeamMember>> rowsForBOD = chunkList(boardOfDirectors, 2); // split it into 3 elements per row
-  List<List<TeamMember>> rowsForIT = chunkList(investmentTeam, 2); // split it into 3 elements per row
-
-  ScrollController _scrollController = ScrollController(initialScrollOffset: _scrollOffset);
-
-  // Toggle side navigation
-  void _toggleSideNav() {
-    setState(() {
-      _sideNavOpen = !_sideNavOpen;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    
-    // Adding listener to listen for scroll offset changes
-    _scrollController.addListener(_scrollListener);
-  }
-
-  @override
-  void dispose() {
-    // Always dispose of the controller when it's no longer needed
-    _scrollController.removeListener(_scrollListener);
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _scrollListener() {
-    _scrollOffset = _scrollController.offset;
-  }
+class TabletTeamPage extends StatelessWidget {
+  final SidebarController sidebarController = Get.put(SidebarController());
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController _scrollController =
+        ScrollController(initialScrollOffset: _scrollOffset);
+
+    List<List<TeamMember>> rowsForBOD = chunkList(boardOfDirectors, 2);
+    List<List<TeamMember>> rowsForIT = chunkList(investmentTeam, 2);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -310,222 +106,38 @@ class _TabletTeamPageState extends State<TabletTeamPage> {
           Padding(
             padding: const EdgeInsets.only(top: 110),
             child: SingleChildScrollView(
-              controller: _scrollController, // Use the passed ScrollController
+              controller: _scrollController,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Header Section with Background Image
-                  Stack(
-                    children: [
-                      // Background Image
-                      Container(
-                        width: double.infinity,
-                        height: 250,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                                "assets/images/photos/golden_bull.png"), // Path to your background image
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      // "Meet the Team" Text Overlay
-                      Positioned.fill(
-                        child: Center(
-                          child: Text(
-                            "MEET THE TEAM",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 56,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Cormorant',
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(2, 2),
-                                  blurRadius: 5.0,
-                                  color: Colors.black.withOpacity(0.5),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // Board of Directors Title
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 48.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          "BOARD OF DIRECTORS",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 49,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                            fontFamily: 'Cormorant',
-                          ),
-                        ),
-                        Container(
-                          height: 2,
-                          width: 30,
-                          color: Colors.black87,
-                          margin: EdgeInsets.only(top: 6),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Team Members Grid for Board of Directors
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      children: [
-                        ...rowsForBOD.map((row) {
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Spacer(flex: 1),
-                                  ...row.map((member) {
-                                    return [
-                                      MemberCard(
-                                        name: member.name,
-                                        role: member.role,
-                                        imagePath: member.imagePath,
-                                        emailLink: member.emailLink,
-                                        linkedinLink: member.linkedInLink,
-                                      ),
-                                      Spacer(flex: 1), // Spacer after each MemberCard
-                                    ];
-                                  }).expand((element) => element).toList(),
-                                ],
-                              ),
-                              SizedBox(height: 60),
-                            ],
-                          );
-                        }).toList(),
-                      ],
-                    ),
-                  ),
-                  // Investment Team Title
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 48.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          "INVESTMENT TEAM",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 49,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                            fontFamily: 'Cormorant',
-                          ),
-                        ),
-                        Container(
-                          height: 2,
-                          width: 30,
-                          color: Colors.black87,
-                          margin: EdgeInsets.only(top: 6),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Team Members Grid for Investment Team
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      children: [
-                        ...rowsForIT.map((row) {
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Spacer(flex: 1),
-                                  ...row.map((member) {
-                                    return [
-                                      MemberCard(
-                                        name: member.name,
-                                        role: member.role,
-                                        imagePath: member.imagePath,
-                                        emailLink: member.emailLink,
-                                        linkedinLink: member.linkedInLink,
-                                      ),
-                                      Spacer(flex: 1), // Spacer after each MemberCard
-                                    ];
-                                  }).expand((element) => element).toList(),
-                                ],
-                              ),
-                              SizedBox(height: 60),
-                            ],
-                          );
-                        }).toList(),
-                      ],
-                    ),
-                  ),
+                  TeamHeader(),
+                  TeamSection(title: "BOARD OF DIRECTORS", rows: rowsForBOD),
+                  TeamSection(title: "INVESTMENT TEAM", rows: rowsForIT),
                   BottomNav(),
                 ],
               ),
             ),
           ),
-          Column(
-            children: [
-              TopNav(activePage: 'Team', onSideNavPressed: _toggleSideNav),
-            ],
-          ),
-          if (_sideNavOpen) SideNav(toggleSideNav: _toggleSideNav, activePage: 'Team'),
+          const TopNav(activePage: 'Team'),
+          Obx(() => sidebarController.isOpen.value
+              ? const SideNav(activePage: 'Team')
+              : const SizedBox.shrink()),
         ],
       ),
     );
   }
 }
 
-class MobileTeamPage extends StatefulWidget {
-  @override
-  _MobileTeamPageState createState() => _MobileTeamPageState();
-}
-
-class _MobileTeamPageState extends State<MobileTeamPage> {
-  bool _sideNavOpen = false;
-  List<List<TeamMember>> rowsForBOD = chunkList(boardOfDirectors, 1); // split it into 3 elements per row
-  List<List<TeamMember>> rowsForIT = chunkList(investmentTeam, 1); // split it into 3 elements per row
-
-  ScrollController _scrollController = ScrollController(initialScrollOffset: _scrollOffset);
-
-  // Toggle side navigation
-  void _toggleSideNav() {
-    setState(() {
-      _sideNavOpen = !_sideNavOpen;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    
-    // Adding listener to listen for scroll offset changes
-    _scrollController.addListener(_scrollListener);
-  }
-
-  @override
-  void dispose() {
-    // Always dispose of the controller when it's no longer needed
-    _scrollController.removeListener(_scrollListener);
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _scrollListener() {
-    _scrollOffset = _scrollController.offset;
-  }
+class MobileTeamPage extends StatelessWidget {
+  final SidebarController sidebarController = Get.put(SidebarController());
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController _scrollController =
+        ScrollController(initialScrollOffset: _scrollOffset);
+
+    List<List<TeamMember>> rowsForBOD = chunkList(boardOfDirectors, 1);
+    List<List<TeamMember>> rowsForIT = chunkList(investmentTeam, 1);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -533,293 +145,141 @@ class _MobileTeamPageState extends State<MobileTeamPage> {
           Padding(
             padding: const EdgeInsets.only(top: 110),
             child: SingleChildScrollView(
-              controller: _scrollController, // Use the passed ScrollController
+              controller: _scrollController,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Header Section with Background Image
-                  Stack(
-                    children: [
-                      // Background Image
-                      Container(
-                        width: double.infinity,
-                        height: 250,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                                "assets/images/photos/golden_bull.png"), // Path to your background image
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      // "Meet the Team" Text Overlay
-                      Positioned.fill(
-                        child: Center(
-                          child: Text(
-                            "MEET THE TEAM",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 56,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Cormorant',
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(2, 2),
-                                  blurRadius: 5.0,
-                                  color: Colors.black.withOpacity(0.5),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // Board of Directors Title
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 48.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          "BOARD OF DIRECTORS",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 49,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                            fontFamily: 'Cormorant',
-                          ),
-                        ),
-                        Container(
-                          height: 2,
-                          width: 30,
-                          color: Colors.black87,
-                          margin: EdgeInsets.only(top: 6),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Team Members Grid for Board of Directors
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      children: [
-                        ...rowsForBOD.map((row) {
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Spacer(flex: 1),
-                                  ...row.map((member) {
-                                    return [
-                                      MemberCard(
-                                        name: member.name,
-                                        role: member.role,
-                                        imagePath: member.imagePath,
-                                        emailLink: member.emailLink,
-                                        linkedinLink: member.linkedInLink,
-                                      ),
-                                      Spacer(flex: 1), // Spacer after each MemberCard
-                                    ];
-                                  }).expand((element) => element).toList(),
-                                ],
-                              ),
-                              SizedBox(height: 60),
-                            ],
-                          );
-                        }).toList(),
-                      ],
-                    ),
-                  ),
-                  // Investment Team Title
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 48.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          "INVESTMENT TEAM",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 49,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                            fontFamily: 'Cormorant',
-                          ),
-                        ),
-                        Container(
-                          height: 2,
-                          width: 30,
-                          color: Colors.black87,
-                          margin: EdgeInsets.only(top: 6),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Team Members Grid for Investment Team
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      children: [
-                        ...rowsForIT.map((row) {
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Spacer(flex: 1),
-                                  ...row.map((member) {
-                                    return [
-                                      MemberCard(
-                                        name: member.name,
-                                        role: member.role,
-                                        imagePath: member.imagePath,
-                                        emailLink: member.emailLink,
-                                        linkedinLink: member.linkedInLink,
-                                      ),
-                                      Spacer(flex: 1), // Spacer after each MemberCard
-                                    ];
-                                  }).expand((element) => element).toList(),
-                                ],
-                              ),
-                              SizedBox(height: 60),
-                            ],
-                          );
-                        }).toList(),
-                      ],
-                    ),
-                  ),
+                  TeamHeader(),
+                  TeamSection(title: "BOARD OF DIRECTORS", rows: rowsForBOD),
+                  TeamSection(title: "INVESTMENT TEAM", rows: rowsForIT),
                   BottomNav(),
                 ],
               ),
             ),
           ),
-          Column(
-            children: [
-              TopNav(activePage: 'Team', onSideNavPressed: _toggleSideNav),
-            ],
-          ),
-          if (_sideNavOpen) SideNav(toggleSideNav: _toggleSideNav, activePage: 'Team'),
+          const TopNav(activePage: 'Team'),
+          Obx(() => sidebarController.isOpen.value
+              ? const SideNav(activePage: 'Team')
+              : const SizedBox.shrink()),
         ],
       ),
     );
   }
 }
 
-class MemberCard extends StatefulWidget {
-  final String name;
-  final String role;
-  final String imagePath;
-  final String emailLink; // Add an email link parameter
-  final String linkedinLink; // Add a LinkedIn link parameter
+// 🔹 Small reusable pieces
 
-  const MemberCard({
-    required this.name,
-    required this.role,
-    required this.imagePath, // Default placeholder image if no imagePath is specified in the widget call
-    required this.emailLink,
-    required this.linkedinLink,
-  });
-
-  @override
-  createState() => _MemberCardState();
-}
-
-class _MemberCardState extends State<MemberCard> {
-  bool isHoveredEmail = false;
-  bool isHoveredLinkedIn = false;
-
-  // Function to launch URLs (either email or LinkedIn)
-  Future<void> _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
+class TeamHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start, // Left-align content
+    return Stack(
       children: [
-        // Square Image Container
         Container(
-          width: 375,
-          height: 400,
+          width: double.infinity,
+          height: 250,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8), // Slightly rounded corners
             image: DecorationImage(
-              image: AssetImage(widget.imagePath.isEmpty
-                  ? 'assets/images/photos/placeholder.png'
-                  : widget.imagePath),
+              image: AssetImage("assets/images/photos/golden_bull.png"),
               fit: BoxFit.cover,
             ),
-            color: Colors.grey[200],
           ),
         ),
-        SizedBox(height: 12),
-        // Name Text (left-aligned)
-        Text(
-          widget.name.toUpperCase(),
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w800,
-            color: Colors.black87,
-            fontFamily: 'Cormorant', // Set the desired font
-          ),
-        ),
-        // Role Text (left-aligned)
-        Text(
-          widget.role,
-          style: TextStyle(
-            fontSize: 22,
-            color: Color.fromRGBO(11, 71, 222, 1),
-            fontWeight: FontWeight.w900,
-            fontFamily: 'Cormorant', // Set the desired font
-          ),
-        ),
-        SizedBox(height: 8),
-        // Icons Row (Email, LinkedIn) left-aligned
-        Row(
-          children: [
-            MouseRegion(
-              onEnter: (_) => setState(() => isHoveredEmail = true),
-              onExit: (_) => setState(() => isHoveredEmail = false),
-              child: GestureDetector(
-                onTap: () => launch('mailto:${widget.emailLink}'),
-                child: Icon(
-                  Icons.email,
-                  size: 30,
-                  color: isHoveredEmail
-                      ? Color.fromARGB(255, 11, 53, 221)
-                      : Colors.black87,
-                ),
+        Positioned.fill(
+          child: Center(
+            child: Text(
+              "MEET THE TEAM",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 56,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cormorant',
+                shadows: [
+                  Shadow(
+                    offset: Offset(2, 2),
+                    blurRadius: 5.0,
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                ],
               ),
             ),
-            SizedBox(width: 8),
-            MouseRegion(
-              onEnter: (_) => setState(() => isHoveredLinkedIn = true),
-              onExit: (_) => setState(() => isHoveredLinkedIn = false),
-              child: GestureDetector(
-                onTap: () => launch(widget.linkedinLink),
-                child: FaIcon(
-                  FontAwesomeIcons.linkedin,
-                  size: 30,
-                  color: isHoveredLinkedIn
-                      ? Color.fromARGB(255, 11, 53, 221)
-                      : Colors.black87,
-                ),
-              ),
-            )
-          ],
+          ),
         ),
       ],
     );
   }
 }
+
+class TeamSection extends StatelessWidget {
+  final String title;
+  final List<List<TeamMember>> rows;
+
+  const TeamSection({
+    required this.title,
+    required this.rows,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 48.0),
+          child: Column(
+            children: [
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 49,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                  fontFamily: 'Cormorant',
+                ),
+              ),
+              Container(
+                height: 2,
+                width: 30,
+                color: Colors.black87,
+                margin: EdgeInsets.only(top: 6),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 32),
+          child: Column(
+            children: rows.map((row) {
+              return Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Spacer(flex: 1),
+                      ...row
+                          .map((member) => [
+                                MemberCard(
+                                  name: member.name,
+                                  role: member.role,
+                                  imagePath: member.imagePath,
+                                  emailLink: member.emailLink,
+                                  linkedinLink: member.linkedInLink,
+                                ),
+                                Spacer(flex: 1),
+                              ])
+                          .expand((e) => e)
+                          .toList(),
+                    ],
+                  ),
+                  SizedBox(height: 60),
+                ],
+              );
+            }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 
 // // UNUSED FOR THIS VERSION JUST IGNORE!
 // class Something extends StatelessWidget {
