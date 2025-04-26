@@ -251,7 +251,105 @@ class JoinButton extends StatefulWidget {
 }
 
 class _JoinButtonState extends State<JoinButton> {
-  bool isHovered = false;
+  bool isHovered = false;  // Hover state for the original button
+  bool isHoveredAdmin = false;  // Hover state for Admin login button
+  bool isHoveredJoin = false;  // Hover state for Join button inside the dialog
+
+  void _ShowJoinAdmin(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          backgroundColor: Colors.white,
+          child: Container(
+            width: 300,
+            height: 200,
+            padding: EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Admin Login Button
+                MouseRegion(
+                  onEnter: (_) => setState(() => isHoveredAdmin = true),
+                  onExit: (_) => setState(() => isHoveredAdmin = false),
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 150),
+                    curve: Curves.easeInOut,
+                    decoration: BoxDecoration(
+                      color: isHoveredAdmin
+                          ? Color.fromARGB(255, 11, 53, 110) // Hover color
+                          : Color.fromARGB(255, 11, 53, 221), // Default blue color
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 50),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context); // Close Modal
+                        _OpenAdminLogin(context); // Show Admin Login Page
+                      },
+                      child: Text(
+                        'Admin Login',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                          fontFamily: 'Cormorant',
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+
+                // Join Button
+                MouseRegion(
+                  onEnter: (_) => setState(() => isHoveredJoin = true),
+                  onExit: (_) => setState(() => isHoveredJoin = false),
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 150),
+                    curve: Curves.easeInOut,
+                    decoration: BoxDecoration(
+                      color: isHoveredJoin
+                          ? Color.fromARGB(255, 11, 53, 110) // Hover color
+                          : Color.fromARGB(255, 11, 53, 221), // Default blue color
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 50),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context); // Close Modal
+                        final url = Uri.parse('https://forms.gle/kyek727fVJ38ABzt6');
+                        launchUrl(url); // Open Google Form URL
+                      },
+                      child: Text(
+                        'Join',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                          fontFamily: 'Cormorant',
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _OpenAdminLogin (BuildContext context) {
+    print ("Admin Login Cliked");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -271,9 +369,8 @@ class _JoinButtonState extends State<JoinButton> {
         padding: EdgeInsets.symmetric(vertical: 7, horizontal: 35),
         child: GestureDetector(
           onTap: () {
-            final url = Uri.parse('https://forms.gle/kyek727fVJ38ABzt6');
-            launchUrl(url);
-          },
+            _ShowJoinAdmin(context);
+          }, 
           child: Text(
             'Join',
             style: TextStyle(
