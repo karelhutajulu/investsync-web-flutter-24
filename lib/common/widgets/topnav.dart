@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:investsyncwebsite/controllers/sidebar_controller.dart'; // Import your SidebarController
+import 'package:investsyncwebsite/controllers/sidebar_controller.dart';
 
 class TopNav extends StatelessWidget {
   final String activePage;
@@ -12,8 +12,7 @@ class TopNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SidebarController sidebarController =
-        Get.find(); // Find the SidebarController
+    final SidebarController sidebarController = Get.find();
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -21,10 +20,14 @@ class TopNav extends StatelessWidget {
           return DesktopTopNav(activePage: activePage);
         } else if (constraints.maxWidth > 650) {
           return TabletTopNav(
-              activePage: activePage, sidebarController: sidebarController);
+            activePage: activePage,
+            sidebarController: sidebarController,
+          );
         } else {
           return MobileTopNav(
-              activePage: activePage, sidebarController: sidebarController);
+            activePage: activePage,
+            sidebarController: sidebarController,
+          );
         }
       },
     );
@@ -49,9 +52,12 @@ class _TopNavItem extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: active ? Colors.blue : Colors.black,
+          fontSize: 26,
+          fontWeight: FontWeight.w400,
+          fontFamily: 'Minerva',
+          color: Colors.black,
+          decoration: active ? TextDecoration.underline : TextDecoration.none,
+          decorationThickness: 1,
         ),
       ),
     );
@@ -82,27 +88,32 @@ class DesktopTopNav extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Left side: Logo
           Image.asset('assets/logos/investsync-logo.jpg', height: 65),
-
-          // Right side: Navigation items
           Row(
             children: [
               _TopNavItem(
-                  title: 'Home', route: '/', active: activePage == 'Home'),
+                title: 'About Us',
+                route: '/',
+                active: activePage == 'Home',
+              ),
               SizedBox(width: 20),
               _TopNavItem(
-                  title: 'Team', route: '/team', active: activePage == 'Team'),
+                title: 'Team',
+                route: '/team',
+                active: activePage == 'Team',
+              ),
               SizedBox(width: 20),
               _TopNavItem(
-                  title: 'Newsletter',
-                  route: '/newsletter',
-                  active: activePage == 'Newsletter'),
+                title: 'Newsletter',
+                route: '/newsletter',
+                active: activePage == 'Newsletter',
+              ),
               SizedBox(width: 20),
               _TopNavItem(
-                  title: 'Portfolio',
-                  route: '/portfolio',
-                  active: activePage == 'Portfolio'),
+                title: 'Portfolio',
+                route: '/portfolio',
+                active: activePage == 'Portfolio',
+              ),
             ],
           ),
         ],
@@ -124,7 +135,9 @@ class TabletTopNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _TopNavWithMenu(
-        activePage: activePage, sidebarController: sidebarController);
+      activePage: activePage,
+      sidebarController: sidebarController,
+    );
   }
 }
 
@@ -141,7 +154,9 @@ class MobileTopNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _TopNavWithMenu(
-        activePage: activePage, sidebarController: sidebarController);
+      activePage: activePage,
+      sidebarController: sidebarController,
+    );
   }
 }
 
@@ -174,18 +189,16 @@ class _TopNavWithMenu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.asset('assets/logos/logo-icon.png', height: 75),
-          Row(
-            children: [
-              IconButton(
-                onPressed: sidebarController.toggle,
-                icon: Obx(() => AnimatedSwitcher(
-                      duration: Duration(milliseconds: 200),
-                      child: sidebarController.isOpen.value
-                          ? Icon(Icons.close, key: ValueKey('close'))
-                          : Icon(Icons.menu, key: ValueKey('menu')),
-                    )),
-              ),
-            ],
+          IconButton(
+            onPressed: sidebarController.toggle,
+            icon: AnimatedIcon(
+              icon: AnimatedIcons.menu_close,
+              progress: sidebarController.animationController,
+              size: 32,
+            ),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            hoverColor: Colors.transparent,
           ),
         ],
       ),
