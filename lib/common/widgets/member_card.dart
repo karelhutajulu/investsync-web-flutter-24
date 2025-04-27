@@ -36,7 +36,7 @@ class _MemberCardState extends State<MemberCard> {
   }
 
   Future<void> _compressImage() async {
-    final result = await Utils.compressImage(widget.imagePath, quality: 55);
+    final result = await Utils.compressImage(widget.imagePath, quality: 45);
     if (result != null) {
       setState(() {
         _compressed = result;
