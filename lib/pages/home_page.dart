@@ -115,48 +115,75 @@ class HomePage extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 40),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        // Title Section
-                        Text(
-                          'OUR MISSION',
-                          style: TextStyle(
-                            fontSize: 56, // Title font size
-                            fontWeight:
-                                FontWeight.w800, // Heavy weight for the title
-                            fontFamily: 'Cormorant', // Font family for title
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(
-                            height: 36), // Spacing between title and content
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final isDesktop = constraints.maxWidth > 1150;
 
-                        // Mission Items Section with Icons inside circles
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            _MissionItem(
-                              icon: Icons.book,
-                              title: 'Education',
-                              description:
-                                  'Deepen members’ understanding of investment strategies and market dynamics.',
+                            Text(
+                              'OUR MISSION',
+                              style: TextStyle(
+                                fontSize: 56, // Same as WHO WE ARE
+                                fontWeight: FontWeight.w800,
+                                fontFamily: 'Cormorant',
+                                color: Colors.black87,
+                              ),
                             ),
-                            _MissionItem(
-                              icon: Icons.lightbulb,
-                              title: 'Experience',
-                              description:
-                                  'Provide hands-on learning through real-world investment experience.',
-                            ),
-                            _MissionItem(
-                              icon: Icons.people,
-                              title: 'Empowerment',
-                              description:
-                                  'Empower the future finance leaders with leadership and career development opportunities.',
-                            ),
+                            const SizedBox(height: 36),
+                            isDesktop
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      _MissionItem(
+                                        icon: Icons.book,
+                                        title: 'Education',
+                                        description:
+                                            'Deepen members’ understanding of investment strategies and market dynamics.',
+                                      ),
+                                      _MissionItem(
+                                        icon: Icons.lightbulb,
+                                        title: 'Experience',
+                                        description:
+                                            'Provide hands-on learning through real-world investment experience.',
+                                      ),
+                                      _MissionItem(
+                                        icon: Icons.people,
+                                        title: 'Empowerment',
+                                        description:
+                                            'Empower the future finance leaders with leadership and career development opportunities.',
+                                      ),
+                                    ],
+                                  )
+                                : Column(
+                                    children: [
+                                      _MissionItem(
+                                        icon: Icons.book,
+                                        title: 'Education',
+                                        description:
+                                            'Deepen members’ understanding of investment strategies and market dynamics.',
+                                      ),
+                                      SizedBox(height: 36),
+                                      _MissionItem(
+                                        icon: Icons.lightbulb,
+                                        title: 'Experience',
+                                        description:
+                                            'Provide hands-on learning through real-world investment experience.',
+                                      ),
+                                      SizedBox(height: 36),
+                                      _MissionItem(
+                                        icon: Icons.people,
+                                        title: 'Empowerment',
+                                        description:
+                                            'Empower the future finance leaders with leadership and career development opportunities.',
+                                      ),
+                                    ],
+                                  ),
+                            const SizedBox(height: 80),
                           ],
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -246,7 +273,7 @@ class _SlidingGalleryState extends State<SlidingGallery> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 700,
+      height: 525,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -318,10 +345,12 @@ class _MissionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
+      width: 300, // Important: fix width
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          // Circle with icon
           Container(
             width: 60,
             height: 60,
@@ -340,42 +369,32 @@ class _MissionItem extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 16),
-
-          // Title text
+          const SizedBox(height: 24),
           Text(
             title,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 36,
-              fontWeight: FontWeight.w800,
+              fontSize: 43,
               fontFamily: 'Cormorant',
-              color: Colors.black, // Fully black color
+              fontWeight: FontWeight.w800,
+              color: Colors.black87,
             ),
           ),
-          const SizedBox(height: 12),
-
-          // Description paragraph with constrained width
+          const SizedBox(height: 24),
           Container(
-            constraints: BoxConstraints(
-              maxWidth: 280, // ✅ Limit width of each paragraph
-            ),
+            constraints: BoxConstraints(maxWidth: 250),
             child: Text(
               description,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 18,
-                fontFamily: 'Cormorant',
-                fontWeight: FontWeight.w400,
-                color: Colors.black, // ✅ Fully black text color
+                fontSize: 26,
+                fontFamily: 'Kepler',
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
                 height: 1.5,
               ),
             ),
           ),
-          // Inside the Our Mission section (after the last _MissionItem)
-          SizedBox(
-              height:
-                  80), // ✅ Added more space between mission section and footer
         ],
       ),
     );
