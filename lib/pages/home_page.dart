@@ -122,19 +122,26 @@ class HomePage extends StatelessWidget {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            // Title
                             Text(
                               'OUR MISSION',
-                              style: TextStyle(
-                                fontSize: 56, // Same as WHO WE ARE
-                                fontWeight: FontWeight.w800,
+                              style: const TextStyle(
+                                fontSize: 56,
                                 fontFamily: 'Cormorant',
+                                fontWeight: FontWeight.w800,
                                 color: Colors.black87,
                               ),
                             ),
-                            const SizedBox(height: 36),
+                            const SizedBox(
+                                height:
+                                    60), // Bigger gap between title and icons
+
+                            // Row or Column depending on screen size
                             isDesktop
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start, // Important
                                     children: [
                                       _MissionItem(
                                         icon: Icons.book,
@@ -142,12 +149,14 @@ class HomePage extends StatelessWidget {
                                         description:
                                             'Deepen members’ understanding of investment strategies and market dynamics.',
                                       ),
+                                      SizedBox(width: 48),
                                       _MissionItem(
                                         icon: Icons.lightbulb,
                                         title: 'Experience',
                                         description:
                                             'Provide hands-on learning through real-world investment experience.',
                                       ),
+                                      SizedBox(width: 48),
                                       _MissionItem(
                                         icon: Icons.people,
                                         title: 'Empowerment',
@@ -164,14 +173,14 @@ class HomePage extends StatelessWidget {
                                         description:
                                             'Deepen members’ understanding of investment strategies and market dynamics.',
                                       ),
-                                      SizedBox(height: 36),
+                                      const SizedBox(height: 48),
                                       _MissionItem(
                                         icon: Icons.lightbulb,
                                         title: 'Experience',
                                         description:
                                             'Provide hands-on learning through real-world investment experience.',
                                       ),
-                                      SizedBox(height: 36),
+                                      const SizedBox(height: 48),
                                       _MissionItem(
                                         icon: Icons.people,
                                         title: 'Empowerment',
@@ -180,7 +189,8 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                            const SizedBox(height: 80),
+
+                            const SizedBox(height: 100), // Space to Footer
                           ],
                         );
                       },
