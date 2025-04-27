@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-
 import 'package:investsyncwebsite/controllers/sidebar_controller.dart'; // ADD THIS
 import 'package:investsyncwebsite/pages/home_page.dart';
 import 'package:investsyncwebsite/pages/team_page.dart';

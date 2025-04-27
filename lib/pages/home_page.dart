@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
               slivers: [
                 // First Parallax Hero Section
                 ParallaxImage(
-                  imageUrl: 'assets/images/photos/golden_bull.png',
+                  imagePath: 'assets/images/photos/golden_bull.png',
                   scrollController: ScrollController(),
                   parallaxFactor: parallaxFactor,
                   title: {
@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
 
                 // Second Parallax Section - CUHKSZ Premiere International
                 ParallaxImage(
-                  imageUrl: 'assets/images/photos/shenzhen_city.jpg',
+                  imagePath: 'assets/images/photos/shenzhen_city.jpg',
                   scrollController: ScrollController(),
                   parallaxFactor: parallaxFactor,
                   anchor: 'right',
@@ -106,7 +106,7 @@ class HomePage extends StatelessWidget {
                 // Sliding Gallery Section
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 40),
+                    padding: const EdgeInsets.symmetric(vertical: 80),
                     child: SlidingGallery(),
                   ),
                 ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:investsyncwebsite/utilities/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MemberCard extends StatefulWidget {
   final String name;
   final String role;
-  final String imagePath;
+  final String imagePath;    // can be asset: or file:
   final String emailLink;
   final String linkedinLink;
 
@@ -23,11 +25,35 @@ class MemberCard extends StatefulWidget {
 }
 
 class _MemberCardState extends State<MemberCard> {
+  Uint8List? _compressed; // holds compressed bytes
   bool isHoveredEmail = false;
   bool isHoveredLinkedIn = false;
 
   @override
+  void initState() {
+    super.initState();
+    _compressImage();
+  }
+
+  Future<void> _compressImage() async {
+    final result = await Utils.compressImage(widget.imagePath, quality: 55);
+    if (result != null) {
+      setState(() {
+        _compressed = result;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final imageProvider = _compressed != null
+        ? MemoryImage(_compressed!)
+        : AssetImage(
+            widget.imagePath.isEmpty
+                ? 'assets/images/photos/placeholder.png'
+                : widget.imagePath,
+          ) as ImageProvider;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -38,9 +64,7 @@ class _MemberCardState extends State<MemberCard> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
-              image: AssetImage(widget.imagePath.isEmpty
-                  ? 'assets/images/photos/placeholder.png'
-                  : widget.imagePath),
+              image: imageProvider,
               fit: BoxFit.cover,
             ),
             color: Colors.grey[200],
@@ -75,7 +99,6 @@ class _MemberCardState extends State<MemberCard> {
         // Contact icons
         Row(
           children: [
-            // Email
             MouseRegion(
               onEnter: (_) => setState(() => isHoveredEmail = true),
               onExit: (_) => setState(() => isHoveredEmail = false),
@@ -91,8 +114,6 @@ class _MemberCardState extends State<MemberCard> {
               ),
             ),
             const SizedBox(width: 8),
-
-            // LinkedIn
             MouseRegion(
               onEnter: (_) => setState(() => isHoveredLinkedIn = true),
               onExit: (_) => setState(() => isHoveredLinkedIn = false),

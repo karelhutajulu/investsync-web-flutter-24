@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:investsyncwebsite/animations/fade_in_animation.dart';
 
 class ParallaxImage extends StatefulWidget {
-  final String imageUrl;
+  final String imagePath;
   final ScrollController scrollController;
   final double parallaxFactor;
   final Map<String, Map<String, double>> title;
@@ -10,7 +10,7 @@ class ParallaxImage extends StatefulWidget {
 
   const ParallaxImage({
     Key? key,
-    required this.imageUrl,
+    required this.imagePath,
     required this.scrollController,
     required this.parallaxFactor,
     required this.title,
@@ -111,8 +111,8 @@ class _ParallaxImageState extends State<ParallaxImage> {
             return Stack(
               children: [
                 // Apply the parallax translation to the image
-                Image.network(
-                  widget.imageUrl,
+                Image.asset(
+                  widget.imagePath,
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: double.infinity,
