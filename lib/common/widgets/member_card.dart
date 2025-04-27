@@ -6,10 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 class MemberCard extends StatefulWidget {
   final String name;
+  final double nameFontSize;
   final String role;
   final String imagePath;    // can be asset: or file:
   final String emailLink;
   final String linkedinLink;
+  final double width;
+  final double height;
 
   const MemberCard({
     Key? key,
@@ -17,7 +20,7 @@ class MemberCard extends StatefulWidget {
     required this.role,
     required this.imagePath,
     required this.emailLink,
-    required this.linkedinLink,
+    required this.linkedinLink, required this.width, required this.height, required this.nameFontSize,
   }) : super(key: key);
 
   @override
@@ -59,8 +62,8 @@ class _MemberCardState extends State<MemberCard> {
       children: [
         // Profile image
         Container(
-          width: 375,
-          height: 400,
+          width: widget.width,
+          height: widget.height,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
@@ -75,8 +78,8 @@ class _MemberCardState extends State<MemberCard> {
         // Name
         Text(
           widget.name.toUpperCase(),
-          style: const TextStyle(
-            fontSize: 24,
+          style: TextStyle(
+            fontSize: widget.nameFontSize,
             fontWeight: FontWeight.w800,
             color: Colors.black87,
             fontFamily: 'Cormorant',
@@ -86,8 +89,8 @@ class _MemberCardState extends State<MemberCard> {
         // Role
         Text(
           widget.role,
-          style: const TextStyle(
-            fontSize: 22,
+          style: TextStyle(
+            fontSize: widget.nameFontSize / 1.1,
             color: Color.fromRGBO(11, 71, 222, 1),
             fontWeight: FontWeight.w900,
             fontFamily: 'Cormorant',

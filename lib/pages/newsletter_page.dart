@@ -17,7 +17,8 @@ class NewsletterPage extends StatelessWidget {
 
     if (screenWidth > 950) return DesktopNewsletterPage();
     if (screenWidth > 725) return TabletNewsletterPage();
-    return MobileNewsletterPage();
+    if (screenWidth > 550) return MobileNewsletterPage();
+    else return VerySmallNewsletterPage();
   }
 }
 
@@ -134,6 +135,17 @@ class MobileNewsletterPage extends StatelessWidget {
     return const _BaseNewsletterPage(
       containerWidth: 475,
       containerHeight: 500,
+      showImageOnTop: true,
+    );
+  }
+}
+
+class VerySmallNewsletterPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const _BaseNewsletterPage(
+      containerWidth: 315,
+      containerHeight: 700,
       showImageOnTop: true,
     );
   }

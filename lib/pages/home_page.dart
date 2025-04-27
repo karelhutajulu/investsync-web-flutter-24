@@ -34,14 +34,26 @@ class HomePage extends StatelessWidget {
                   parallaxFactor: parallaxFactor,
                   title: {
                     'INVESTSYNC': {
-                      'Size': (screenSize.width > 800) ? 68 : 42,
-                      'HorizontalPos': 60,
+                      'Size': (screenSize.width > 800)
+                          ? 68
+                          : (screenSize.width > 500)
+                              ? 42
+                              : 26,
+                      'HorizontalPos': 56,
                       'VerticalPos': 40,
                     },
                     'INVEST, INNOVATE, INSPIRE': {
-                      'Size': (screenSize.width > 800) ? 26 : 16,
-                      'HorizontalPos': 64,
-                      'VerticalPos': (screenSize.width > 800) ? 180 : 130,
+                      'Size': (screenSize.width > 800)
+                          ? 26
+                          : (screenSize.width > 500)
+                              ? 16
+                              : 10,
+                      'HorizontalPos': 60,
+                      'VerticalPos': (screenSize.width > 800)
+                          ? 180
+                          : (screenSize.width > 500)
+                              ? 130
+                              : 100,
                     },
                   },
                 ),
@@ -55,6 +67,8 @@ class HomePage extends StatelessWidget {
                       'InvestSync broadens students’ investment experience, extends career opportunities, and encourages social networking among members.',
                       'In the Spring of 2024, we launched an investment portfolio with the Student Analyst Team.',
                     ],
+                    titleFontSize: (screenSize.width > 500) ? 56 : 34,
+                    paragraphFontSize: (screenSize.width > 500) ? 26 : 20,
                   ),
                 ),
 
@@ -70,7 +84,7 @@ class HomePage extends StatelessWidget {
                           ? 36
                           : (screenSize.width > 650)
                               ? 24
-                              : 18,
+                              : screenSize.width > 500 ? 18 : 13,
                       'HorizontalPos': 60,
                       'VerticalPos': 60,
                     },
@@ -79,37 +93,37 @@ class HomePage extends StatelessWidget {
                           ? 36
                           : (screenSize.width > 650)
                               ? 24
-                              : 18,
+                              : screenSize.width > 500 ? 18 : 13,
                       'HorizontalPos': 60,
                       'VerticalPos': (screenSize.width > 900)
                           ? 120
                           : (screenSize.width > 650)
                               ? 100
-                              : 90,
+                              : screenSize.width > 500 ? 90 : 85,
                     },
                     'Organization': {
                       'Size': (screenSize.width > 900)
                           ? 36
                           : (screenSize.width > 650)
                               ? 24
-                              : 18,
+                              : screenSize.width > 500 ? 18 : 13,
                       'HorizontalPos': 60,
                       'VerticalPos': (screenSize.width > 900)
                           ? 180
                           : (screenSize.width > 650)
                               ? 140
-                              : 120,
+                              : screenSize.width > 500 ? 120 : 110,
                     },
                   },
                 ),
 
-                // Sliding Gallery Section
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 80),
-                    child: SlidingGallery(),
-                  ),
-                ),
+                // // Sliding Gallery Section
+                // SliverToBoxAdapter(
+                //   child: Padding(
+                //     padding: const EdgeInsets.symmetric(vertical: 80),
+                //     child: SlidingGallery(),
+                //   ),
+                // ),
 
                 // OUR MISSION Section
                 SliverToBoxAdapter(
@@ -125,8 +139,8 @@ class HomePage extends StatelessWidget {
                             // Title
                             Text(
                               'OUR MISSION',
-                              style: const TextStyle(
-                                fontSize: 56,
+                              style: TextStyle(
+                                fontSize: (screenSize.width > 500) ? 56 : 34,
                                 fontFamily: 'Cormorant',
                                 fontWeight: FontWeight.w800,
                                 color: Colors.black87,
@@ -148,6 +162,8 @@ class HomePage extends StatelessWidget {
                                         title: 'Education',
                                         description:
                                             'Deepen members’ understanding of investment strategies and market dynamics.',
+                                        titleFontSize: 43,
+                                        paragraphFontSize: 26,
                                       ),
                                       SizedBox(width: 48),
                                       _MissionItem(
@@ -155,6 +171,8 @@ class HomePage extends StatelessWidget {
                                         title: 'Experience',
                                         description:
                                             'Provide hands-on learning through real-world investment experience.',
+                                        titleFontSize: 43,
+                                        paragraphFontSize: 26,
                                       ),
                                       SizedBox(width: 48),
                                       _MissionItem(
@@ -162,6 +180,8 @@ class HomePage extends StatelessWidget {
                                         title: 'Empowerment',
                                         description:
                                             'Empower the future finance leaders with leadership and career development opportunities.',
+                                        titleFontSize: 43,
+                                        paragraphFontSize: 26,
                                       ),
                                     ],
                                   )
@@ -172,6 +192,8 @@ class HomePage extends StatelessWidget {
                                         title: 'Education',
                                         description:
                                             'Deepen members’ understanding of investment strategies and market dynamics.',
+                                        titleFontSize: (screenSize.width > 500) ? 44 : 26,
+                                        paragraphFontSize: (screenSize.width > 500) ? 26 : 20,
                                       ),
                                       const SizedBox(height: 48),
                                       _MissionItem(
@@ -179,6 +201,8 @@ class HomePage extends StatelessWidget {
                                         title: 'Experience',
                                         description:
                                             'Provide hands-on learning through real-world investment experience.',
+                                        titleFontSize: (screenSize.width > 500) ? 44 : 26,
+                                        paragraphFontSize: (screenSize.width > 500) ? 26 : 20,
                                       ),
                                       const SizedBox(height: 48),
                                       _MissionItem(
@@ -186,6 +210,8 @@ class HomePage extends StatelessWidget {
                                         title: 'Empowerment',
                                         description:
                                             'Empower the future finance leaders with leadership and career development opportunities.',
+                                        titleFontSize: (screenSize.width > 500) ? 44 : 26,
+                                        paragraphFontSize: (screenSize.width > 500) ? 26 : 20,
                                       ),
                                     ],
                                   ),
@@ -346,11 +372,15 @@ class _MissionItem extends StatelessWidget {
   final IconData icon;
   final String title;
   final String description;
+  final double titleFontSize;
+  final double paragraphFontSize;
 
   const _MissionItem({
     required this.icon,
     required this.title,
     required this.description,
+    required this.titleFontSize,
+    required this.paragraphFontSize
   });
 
   @override
@@ -383,8 +413,8 @@ class _MissionItem extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 43,
+            style: TextStyle(
+              fontSize: titleFontSize,
               fontFamily: 'Cormorant',
               fontWeight: FontWeight.w800,
               color: Colors.black87,
@@ -396,8 +426,8 @@ class _MissionItem extends StatelessWidget {
             child: Text(
               description,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 26,
+              style: TextStyle(
+                fontSize: paragraphFontSize,
                 fontFamily: 'Kepler',
                 fontWeight: FontWeight.w600,
                 color: Colors.black87,

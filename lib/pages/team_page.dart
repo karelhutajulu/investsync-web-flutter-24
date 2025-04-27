@@ -70,9 +70,21 @@ class _DesktopTeamPageState extends State<DesktopTeamPage> {
               controller: _scrollController,
               child: Column(
                 children: [
-                  TeamHeader(),
-                  TeamSection(title: "BOARD OF DIRECTORS", rows: rowsForBOD),
-                  TeamSection(title: "INVESTMENT TEAM", rows: rowsForIT),
+                  TeamHeader(text: "MEET THE TEAM", fontSize: 56),
+                  TeamSection(
+                      title: "BOARD OF DIRECTORS",
+                      titleFontSize: 49,
+                      rows: rowsForBOD,
+                      memCardWidth: 375,
+                      memCardHeight: 400,
+                      memCardNameFontSize: 24),
+                  TeamSection(
+                      title: "INVESTMENT TEAM",
+                      titleFontSize: 49,
+                      rows: rowsForIT,
+                      memCardWidth: 375,
+                      memCardHeight: 400,
+                      memCardNameFontSize: 24),
                   BottomNav(),
                 ],
               ),
@@ -109,9 +121,21 @@ class TabletTeamPage extends StatelessWidget {
               controller: _scrollController,
               child: Column(
                 children: [
-                  TeamHeader(),
-                  TeamSection(title: "BOARD OF DIRECTORS", rows: rowsForBOD),
-                  TeamSection(title: "INVESTMENT TEAM", rows: rowsForIT),
+                  TeamHeader(text: "MEET THE TEAM", fontSize: 53),
+                  TeamSection(
+                      title: "BOARD OF DIRECTORS",
+                      titleFontSize: 46,
+                      rows: rowsForBOD,
+                      memCardWidth: 375,
+                      memCardHeight: 400,
+                      memCardNameFontSize: 24),
+                  TeamSection(
+                      title: "INVESTMENT TEAM",
+                      titleFontSize: 46,
+                      rows: rowsForIT,
+                      memCardWidth: 375,
+                      memCardHeight: 400,
+                      memCardNameFontSize: 24),
                   BottomNav(),
                 ],
               ),
@@ -148,9 +172,21 @@ class MobileTeamPage extends StatelessWidget {
               controller: _scrollController,
               child: Column(
                 children: [
-                  TeamHeader(),
-                  TeamSection(title: "BOARD OF DIRECTORS", rows: rowsForBOD),
-                  TeamSection(title: "INVESTMENT TEAM", rows: rowsForIT),
+                  TeamHeader(text: "MEET THE TEAM", fontSize: 50),
+                  TeamSection(
+                      title: "BOARD OF DIRECTORS",
+                      titleFontSize: 44,
+                      rows: rowsForBOD,
+                      memCardWidth: 275,
+                      memCardHeight: 300,
+                      memCardNameFontSize: 20),
+                  TeamSection(
+                      title: "INVESTMENT TEAM",
+                      titleFontSize: 44,
+                      rows: rowsForIT,
+                      memCardWidth: 275,
+                      memCardHeight: 300,
+                      memCardNameFontSize: 20),
                   BottomNav(),
                 ],
               ),
@@ -169,6 +205,15 @@ class MobileTeamPage extends StatelessWidget {
 // 🔹 Small reusable pieces
 
 class TeamHeader extends StatelessWidget {
+  final String text;
+  final double fontSize;
+
+  const TeamHeader({
+    Key? key,
+    required this.text,
+    required this.fontSize,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -186,10 +231,11 @@ class TeamHeader extends StatelessWidget {
         Positioned.fill(
           child: Center(
             child: Text(
-              "MEET THE TEAM",
+              text,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 56,
+                fontSize: fontSize,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Cormorant',
                 shadows: [
@@ -210,11 +256,19 @@ class TeamHeader extends StatelessWidget {
 
 class TeamSection extends StatelessWidget {
   final String title;
+  final double titleFontSize;
   final List<List<TeamMember>> rows;
+  final double memCardWidth;
+  final double memCardHeight;
+  final double memCardNameFontSize;
 
   const TeamSection({
     required this.title,
     required this.rows,
+    required this.titleFontSize,
+    required this.memCardWidth,
+    required this.memCardHeight,
+    required this.memCardNameFontSize,
   });
 
   @override
@@ -229,7 +283,7 @@ class TeamSection extends StatelessWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 49,
+                  fontSize: titleFontSize,
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,
                   fontFamily: 'Cormorant',
@@ -258,10 +312,13 @@ class TeamSection extends StatelessWidget {
                           .map((member) => [
                                 MemberCard(
                                   name: member.name,
+                                  nameFontSize: memCardNameFontSize,
                                   role: member.role,
                                   imagePath: member.imagePath,
                                   emailLink: member.emailLink,
                                   linkedinLink: member.linkedInLink,
+                                  width: memCardWidth,
+                                  height: memCardHeight,
                                 ),
                                 Spacer(flex: 1),
                               ])

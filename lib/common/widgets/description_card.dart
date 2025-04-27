@@ -4,11 +4,15 @@ import 'package:investsyncwebsite/animations/fade_in_animation.dart';
 class DescriptionCard extends StatelessWidget {
   final String title;
   final List<String> description;
+  final double titleFontSize;
+  final double paragraphFontSize;
 
   const DescriptionCard({
     Key? key,
     required this.title,
     required this.description,
+    required this.titleFontSize,
+    required this.paragraphFontSize
   }) : super(key: key);
 
   @override
@@ -23,7 +27,7 @@ class DescriptionCard extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontSize: 56,
+                fontSize: titleFontSize,
                 fontFamily: 'Cormorant', // Set font family to Cormorant
                 fontWeight: FontWeight.w800, // Medium weight for Cormorant
               ),
@@ -42,7 +46,7 @@ class DescriptionCard extends StatelessWidget {
                     paragraph,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 26,
+                      fontSize: paragraphFontSize,
                       fontFamily: 'Kepler', // Set font family to Cormorant
                       fontWeight: FontWeight.w600, // Medium weight for Cormorant
                       height: 1.5, // Line height for better readability
