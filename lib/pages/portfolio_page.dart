@@ -28,7 +28,7 @@ class PortfolioPage extends StatelessWidget {
               Center(
                 child: Image.asset(
                   // Change to asset because it's local
-                  'assets/images/whatthehell.png',
+                  'assets/images/content/building.webp',
                   width: 300 *
                       (16 / 25 * (deviceSize.width / defaultDeviceSize.width) +
                           9 /

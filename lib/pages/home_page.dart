@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 110),
             child: CustomScrollView(
               slivers: [
-                // Top Parallax Hero Section
+                // First Parallax Hero Section
                 ParallaxImage(
                   imageUrl: 'assets/images/photos/golden_bull.png',
                   scrollController: ScrollController(),
@@ -58,6 +58,51 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
 
+                // Second Parallax Section - CUHKSZ Premiere International
+                ParallaxImage(
+                  imageUrl: 'assets/images/photos/shenzhen_city.jpg',
+                  scrollController: ScrollController(),
+                  parallaxFactor: parallaxFactor,
+                  anchor: 'right',
+                  title: {
+                    "CUHK(SZ)'s Premiere International": {
+                      'Size': (screenSize.width > 900)
+                          ? 36
+                          : (screenSize.width > 650)
+                              ? 24
+                              : 18,
+                      'HorizontalPos': 60,
+                      'VerticalPos': 60,
+                    },
+                    'Investment & Networking': {
+                      'Size': (screenSize.width > 900)
+                          ? 36
+                          : (screenSize.width > 650)
+                              ? 24
+                              : 18,
+                      'HorizontalPos': 60,
+                      'VerticalPos': (screenSize.width > 900)
+                          ? 120
+                          : (screenSize.width > 650)
+                              ? 100
+                              : 90,
+                    },
+                    'Organization': {
+                      'Size': (screenSize.width > 900)
+                          ? 36
+                          : (screenSize.width > 650)
+                              ? 24
+                              : 18,
+                      'HorizontalPos': 60,
+                      'VerticalPos': (screenSize.width > 900)
+                          ? 180
+                          : (screenSize.width > 650)
+                              ? 140
+                              : 120,
+                    },
+                  },
+                ),
+
                 // Sliding Gallery Section
                 SliverToBoxAdapter(
                   child: Padding(
@@ -66,15 +111,53 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
 
-                // Our Mission Section
+                // OUR MISSION Section
                 SliverToBoxAdapter(
-                  child: DescriptionCard(
-                    title: 'OUR MISSION',
-                    description: [
-                      'At the heart of InvestSync lies a commitment to deepening our members’ understanding of investment strategies and market dynamics.',
-                      'Our philosophy centers around three pillars: Education, Experience, and Empowerment.',
-                      'Join us in shaping your future in finance and investment with InvestSync at CUHKSZ.',
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 40),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Title Section
+                        Text(
+                          'OUR MISSION',
+                          style: TextStyle(
+                            fontSize: 56, // Title font size
+                            fontWeight:
+                                FontWeight.w800, // Heavy weight for the title
+                            fontFamily: 'Cormorant', // Font family for title
+                            color: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(
+                            height: 36), // Spacing between title and content
+
+                        // Mission Items Section with Icons inside circles
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _MissionItem(
+                              icon: Icons.book,
+                              title: 'Education',
+                              description:
+                                  'Deepen members’ understanding of investment strategies and market dynamics.',
+                            ),
+                            _MissionItem(
+                              icon: Icons.lightbulb,
+                              title: 'Experience',
+                              description:
+                                  'Provide hands-on learning through real-world investment experience.',
+                            ),
+                            _MissionItem(
+                              icon: Icons.people,
+                              title: 'Empowerment',
+                              description:
+                                  'Empower the future finance leaders with leadership and career development opportunities.',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -98,6 +181,8 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+// SlidingGallery widget remains unchanged (your latest working version)
 
 class SlidingGallery extends StatefulWidget {
   const SlidingGallery({super.key});
@@ -215,6 +300,83 @@ class _SlidingGalleryState extends State<SlidingGallery> {
           alignment: Alignment.center,
           child: Icon(icon, color: Colors.black, size: 24),
         ),
+      ),
+    );
+  }
+}
+
+class _MissionItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String description;
+
+  const _MissionItem({
+    required this.icon,
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        children: [
+          // Circle with icon
+          Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.black,
+                width: 2,
+              ),
+            ),
+            child: Center(
+              child: Icon(
+                icon,
+                size: 28,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Title text
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.w800,
+              fontFamily: 'Cormorant',
+              color: Colors.black, // Fully black color
+            ),
+          ),
+          const SizedBox(height: 12),
+
+          // Description paragraph with constrained width
+          Container(
+            constraints: BoxConstraints(
+              maxWidth: 280, // ✅ Limit width of each paragraph
+            ),
+            child: Text(
+              description,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 18,
+                fontFamily: 'Cormorant',
+                fontWeight: FontWeight.w400,
+                color: Colors.black, // ✅ Fully black text color
+                height: 1.5,
+              ),
+            ),
+          ),
+          // Inside the Our Mission section (after the last _MissionItem)
+          SizedBox(
+              height:
+                  80), // ✅ Added more space between mission section and footer
+        ],
       ),
     );
   }
