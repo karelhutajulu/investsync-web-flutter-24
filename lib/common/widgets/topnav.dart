@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:investsyncwebsite/controllers/sidebar_controller.dart';
 
 class TopNav extends StatelessWidget {
   final String activePage;
 
-  const TopNav({
-    super.key,
-    required this.activePage,
-  });
+  const TopNav({super.key, required this.activePage});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +32,7 @@ class TopNav extends StatelessWidget {
   }
 }
 
+// TopNav Item for Desktop
 class _TopNavItem extends StatelessWidget {
   final String title;
   final String route;
@@ -51,11 +50,12 @@ class _TopNavItem extends StatelessWidget {
       onTap: () => Get.toNamed(route),
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.w400,
           fontFamily: 'Minerva',
           color: Colors.black,
+        ).copyWith(
           decoration: active ? TextDecoration.underline : TextDecoration.none,
           decorationThickness: 1,
         ),
@@ -64,6 +64,47 @@ class _TopNavItem extends StatelessWidget {
   }
 }
 
+// JOIN Button
+class _JoinButton extends StatelessWidget {
+  const _JoinButton({super.key});
+
+  void _launchJoinForm() async {
+    const url =
+        'https://docs.google.com/forms/d/e/1FAIpQLSc9DmuIFFhA7ArmEX9kQJ4FRBxgAa34KCiAir1LFEixHfirFw/viewform?pli=1';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch the form';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: _launchJoinForm,
+      child: Container(
+        margin: const EdgeInsets.only(left: 32),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 2),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Text(
+          'Join',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Minerva',
+            color: Colors.black,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Desktop Version
 class DesktopTopNav extends StatelessWidget {
   final String activePage;
 
@@ -73,7 +114,7 @@ class DesktopTopNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 110,
-      padding: EdgeInsets.symmetric(horizontal: 50),
+      padding: const EdgeInsets.symmetric(horizontal: 50),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -81,7 +122,7 @@ class DesktopTopNav extends StatelessWidget {
             color: Colors.black.withOpacity(0.25),
             spreadRadius: 2.5,
             blurRadius: 2.5,
-            offset: Offset(0, 2.5),
+            offset: const Offset(0, 2.5),
           ),
         ],
       ),
@@ -92,28 +133,21 @@ class DesktopTopNav extends StatelessWidget {
           Row(
             children: [
               _TopNavItem(
-                title: 'About Us',
-                route: '/',
-                active: activePage == 'Home',
-              ),
-              SizedBox(width: 20),
+                  title: 'About Us', route: '/', active: activePage == 'Home'),
+              const SizedBox(width: 20),
               _TopNavItem(
-                title: 'Team',
-                route: '/team',
-                active: activePage == 'Team',
-              ),
-              SizedBox(width: 20),
+                  title: 'Team', route: '/team', active: activePage == 'Team'),
+              const SizedBox(width: 20),
               _TopNavItem(
-                title: 'Newsletter',
-                route: '/newsletter',
-                active: activePage == 'Newsletter',
-              ),
-              SizedBox(width: 20),
+                  title: 'Newsletter',
+                  route: '/newsletter',
+                  active: activePage == 'Newsletter'),
+              const SizedBox(width: 20),
               _TopNavItem(
-                title: 'Portfolio',
-                route: '/portfolio',
-                active: activePage == 'Portfolio',
-              ),
+                  title: 'Portfolio',
+                  route: '/portfolio',
+                  active: activePage == 'Portfolio'),
+              const _JoinButton(), // 👉 JOIN BUTTON added here
             ],
           ),
         ],
@@ -122,6 +156,7 @@ class DesktopTopNav extends StatelessWidget {
   }
 }
 
+// Tablet and Mobile Versions (hamburger menu)
 class TabletTopNav extends StatelessWidget {
   final String activePage;
   final SidebarController sidebarController;
@@ -160,6 +195,7 @@ class MobileTopNav extends StatelessWidget {
   }
 }
 
+// Mobile & Tablet Shared TopNav with Hamburger Icon
 class _TopNavWithMenu extends StatelessWidget {
   final String activePage;
   final SidebarController sidebarController;
@@ -173,7 +209,7 @@ class _TopNavWithMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 110,
-      padding: EdgeInsets.symmetric(horizontal: 45),
+      padding: const EdgeInsets.symmetric(horizontal: 45),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -181,7 +217,7 @@ class _TopNavWithMenu extends StatelessWidget {
             color: Colors.black.withOpacity(0.25),
             spreadRadius: 2.5,
             blurRadius: 2.5,
-            offset: Offset(0, 2.5),
+            offset: const Offset(0, 2.5),
           ),
         ],
       ),

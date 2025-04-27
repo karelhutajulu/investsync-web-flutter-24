@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:investsyncwebsite/controllers/sidebar_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SideNav extends StatelessWidget {
   final String activePage;
@@ -25,35 +26,41 @@ class SideNav extends StatelessWidget {
         bottom: 0,
         child: AnimatedOpacity(
           opacity: sidebarController.isOpen.value ? 1.0 : 0.0,
-          duration: Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 500),
           curve: Curves.easeInOut,
           child: Container(
             color: Colors.white,
-            padding: EdgeInsets.symmetric(horizontal: 48),
+            padding: const EdgeInsets.symmetric(horizontal: 48),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // ✅ Text stays left
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Spacer(flex: 2),
+                const Spacer(flex: 2),
+
                 _AnimatedSideNavItem(
                     title: 'About Us',
                     route: '/',
                     active: activePage == 'Home'),
-                SizedBox(height: 6), // ✅ Small vertical spacing
+                const SizedBox(height: 6),
                 _AnimatedSideNavItem(
                     title: 'Team',
                     route: '/team',
                     active: activePage == 'Team'),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 _AnimatedSideNavItem(
                     title: 'Newsletter',
                     route: '/newsletter',
                     active: activePage == 'Newsletter'),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 _AnimatedSideNavItem(
                     title: 'Portfolio',
                     route: '/portfolio',
                     active: activePage == 'Portfolio'),
-                Spacer(flex: 3),
+
+                const Spacer(flex: 3),
+
+                // Join Button
+                _JoinButton(),
+                const SizedBox(height: 32),
               ],
             ),
           ),
@@ -88,13 +95,13 @@ class _AnimatedSideNavItemState extends State<_AnimatedSideNavItem>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     )..forward();
 
     _slideAnimation = Tween<Offset>(
-      begin: Offset(0, 0.2),
-      end: Offset(0, 0),
+      begin: const Offset(0, 0.2),
+      end: Offset.zero,
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeOut,
@@ -136,7 +143,7 @@ class _AnimatedSideNavItemState extends State<_AnimatedSideNavItem>
                 widget.title,
                 style: TextStyle(
                   fontSize: 46,
-                  height: 1.0, // ✅ No extra space inside Text
+                  height: 1.0,
                   fontWeight: FontWeight.w400,
                   fontFamily: 'Minerva',
                   color: Colors.black,
@@ -146,13 +153,53 @@ class _AnimatedSideNavItemState extends State<_AnimatedSideNavItem>
                   decorationThickness: 1,
                 ),
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               SvgPicture.asset(
                 'assets/icons/finalgyat.svg',
                 height: 38,
                 color: Colors.black,
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// JOIN Button Widget
+class _JoinButton extends StatelessWidget {
+  const _JoinButton({super.key});
+
+  void _launchJoinForm() async {
+    const url =
+        'https://docs.google.com/forms/d/e/1FAIpQLSc9DmuIFFhA7ArmEX9kQJ4FRBxgAa34KCiAir1LFEixHfirFw/viewform?pli=1';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch Join Form';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: _launchJoinForm,
+      child: Container(
+        margin: const EdgeInsets.only(top: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 2),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Text(
+          'Join',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Minerva',
+            color: Colors.black,
           ),
         ),
       ),
