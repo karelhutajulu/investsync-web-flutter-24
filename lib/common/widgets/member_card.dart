@@ -28,34 +28,34 @@ class MemberCard extends StatefulWidget {
 }
 
 class _MemberCardState extends State<MemberCard> {
-  Uint8List? _compressed; // holds compressed bytes
+  // Uint8List? _compressed; // holds compressed bytes
   bool isHoveredEmail = false;
   bool isHoveredLinkedIn = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _compressImage();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _compressImage();
+  // }
 
-  Future<void> _compressImage() async {
-    final result = await Utils.compressImage(widget.imagePath, quality: 50);
-    if (result != null) {
-      setState(() {
-        _compressed = result;
-      });
-    }
-  }
+  // Future<void> _compressImage() async {
+  //   final result = await Utils.compressImage(widget.imagePath, quality: 50);
+  //   if (result != null) {
+  //     setState(() {
+  //       _compressed = result;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final imageProvider = _compressed != null
-        ? MemoryImage(_compressed!)
-        : AssetImage(
-            widget.imagePath.isEmpty
-                ? 'assets/images/photos/placeholder.png'
-                : widget.imagePath,
-          ) as ImageProvider;
+    // final imageProvider = _compressed != null
+    //     ? MemoryImage(_compressed!)
+    //     : AssetImage(
+    //         widget.imagePath.isEmpty
+    //             ? 'assets/images/photos/placeholder.png'
+    //             : widget.imagePath,
+    //       ) as ImageProvider;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +67,7 @@ class _MemberCardState extends State<MemberCard> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
-              image: imageProvider,
+              image: AssetImage(widget.imagePath.isEmpty ? 'assets/images/misc/placeholder.png' : widget.imagePath),
               fit: BoxFit.cover,
             ),
             color: Colors.grey[200],

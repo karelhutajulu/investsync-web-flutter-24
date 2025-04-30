@@ -223,28 +223,31 @@ class TeamHeader extends StatelessWidget {
           height: 250,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/photos/golden_bull.png"),
+              image: AssetImage("assets/images/content/golden_bull.png"),
               fit: BoxFit.cover,
             ),
           ),
         ),
         Positioned.fill(
           child: Center(
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Cormorant',
-                shadows: [
-                  Shadow(
-                    offset: Offset(2, 2),
-                    blurRadius: 5.0,
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 36.0),
+              child: Text(
+                text,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Cormorant',
+                  shadows: [
+                    Shadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 5.0,
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -276,7 +279,7 @@ class TeamSection extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 48.0),
+          padding: EdgeInsets.symmetric(vertical: 48.0, horizontal: 36.0),
           child: Column(
             children: [
               Text(

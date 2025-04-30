@@ -31,7 +31,7 @@ class Article {
 // Sample list of articles with key takeaways
 final List<Article> articles = [
   Article(
-    imagePath: 'assets/images/photos/south_korea_flag.jpg',
+    imagePath: 'assets/images/content/south_korea_flag.jpg',
     teamName: 'Market Research Team',
     date: 'May 16',
     readTime: '3 min read',
@@ -68,7 +68,7 @@ final List<Article> articles = [
     ],
   ),
   Article(
-    imagePath: 'assets/images/photos/tech_innovation.jpg',
+    imagePath: 'assets/images/content/tech_innovation.jpg',
     teamName: 'Market Research Team',
     date: 'June 5',
     readTime: '5 min read',
@@ -105,7 +105,7 @@ final List<Article> articles = [
     ],
   ),
   Article(
-    imagePath: 'assets/images/photos/tech_innovation.jpg',
+    imagePath: 'assets/images/content/tech_innovation.jpg',
     teamName: 'Sustainability Team',
     date: 'July 10',
     readTime: '4 min read',
@@ -142,7 +142,7 @@ final List<Article> articles = [
     ],
   ),
   Article(
-    imagePath: 'assets/images/photos/tech_innovation.jpg',
+    imagePath: 'assets/images/content/tech_innovation.jpg',
     teamName: 'Global Trade Team',
     date: 'August 20',
     readTime: '6 min read',

@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
               slivers: [
                 // First Parallax Hero Section
                 ParallaxImage(
-                  imagePath: 'assets/images/photos/golden_bull.png',
+                  imagePath: 'assets/images/content/golden_bull.png',
                   scrollController: ScrollController(),
                   parallaxFactor: parallaxFactor,
                   title: {
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
 
                 // Second Parallax Section - CUHKSZ Premiere International
                 ParallaxImage(
-                  imagePath: 'assets/images/photos/shenzhen_city.jpg',
+                  imagePath: 'assets/images/content/shenzhen_city.jpg',
                   scrollController: ScrollController(),
                   parallaxFactor: parallaxFactor,
                   anchor: 'right',
@@ -84,7 +84,9 @@ class HomePage extends StatelessWidget {
                           ? 36
                           : (screenSize.width > 650)
                               ? 24
-                              : screenSize.width > 500 ? 18 : 13,
+                              : screenSize.width > 500
+                                  ? 18
+                                  : 13,
                       'HorizontalPos': 60,
                       'VerticalPos': 60,
                     },
@@ -93,37 +95,58 @@ class HomePage extends StatelessWidget {
                           ? 36
                           : (screenSize.width > 650)
                               ? 24
-                              : screenSize.width > 500 ? 18 : 13,
+                              : screenSize.width > 500
+                                  ? 18
+                                  : 13,
                       'HorizontalPos': 60,
                       'VerticalPos': (screenSize.width > 900)
                           ? 120
                           : (screenSize.width > 650)
                               ? 100
-                              : screenSize.width > 500 ? 90 : 85,
+                              : screenSize.width > 500
+                                  ? 90
+                                  : 85,
                     },
                     'Organization': {
                       'Size': (screenSize.width > 900)
                           ? 36
                           : (screenSize.width > 650)
                               ? 24
-                              : screenSize.width > 500 ? 18 : 13,
+                              : screenSize.width > 500
+                                  ? 18
+                                  : 13,
                       'HorizontalPos': 60,
                       'VerticalPos': (screenSize.width > 900)
                           ? 180
                           : (screenSize.width > 650)
                               ? 140
-                              : screenSize.width > 500 ? 120 : 110,
+                              : screenSize.width > 500
+                                  ? 120
+                                  : 110,
                     },
                   },
                 ),
+                
+                // Activities
+                SliverToBoxAdapter(
+                  child: DescriptionCard(
+                    title: 'WHAT WE DO',
+                    description: [
+                      'Insert something here. Please give some ideas on what to say here.',
+                      'Is there anything to say here? It looks weird without anything in between.'
+                    ],
+                    titleFontSize: (screenSize.width > 500) ? 56 : 34,
+                    paragraphFontSize: (screenSize.width > 500) ? 26 : 20,
+                  ),
+                ),
 
-                // // Sliding Gallery Section
-                // SliverToBoxAdapter(
-                //   child: Padding(
-                //     padding: const EdgeInsets.symmetric(vertical: 80),
-                //     child: SlidingGallery(),
-                //   ),
-                // ),
+                // Sliding Gallery Section
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 0),
+                    child: SlidingGallery(),
+                  ),
+                ),
 
                 // OUR MISSION Section
                 SliverToBoxAdapter(
@@ -192,8 +215,10 @@ class HomePage extends StatelessWidget {
                                         title: 'Education',
                                         description:
                                             'Deepen members’ understanding of investment strategies and market dynamics.',
-                                        titleFontSize: (screenSize.width > 500) ? 44 : 26,
-                                        paragraphFontSize: (screenSize.width > 500) ? 26 : 20,
+                                        titleFontSize:
+                                            (screenSize.width > 500) ? 44 : 26,
+                                        paragraphFontSize:
+                                            (screenSize.width > 500) ? 26 : 20,
                                       ),
                                       const SizedBox(height: 48),
                                       _MissionItem(
@@ -201,8 +226,10 @@ class HomePage extends StatelessWidget {
                                         title: 'Experience',
                                         description:
                                             'Provide hands-on learning through real-world investment experience.',
-                                        titleFontSize: (screenSize.width > 500) ? 44 : 26,
-                                        paragraphFontSize: (screenSize.width > 500) ? 26 : 20,
+                                        titleFontSize:
+                                            (screenSize.width > 500) ? 44 : 26,
+                                        paragraphFontSize:
+                                            (screenSize.width > 500) ? 26 : 20,
                                       ),
                                       const SizedBox(height: 48),
                                       _MissionItem(
@@ -210,8 +237,10 @@ class HomePage extends StatelessWidget {
                                         title: 'Empowerment',
                                         description:
                                             'Empower the future finance leaders with leadership and career development opportunities.',
-                                        titleFontSize: (screenSize.width > 500) ? 44 : 26,
-                                        paragraphFontSize: (screenSize.width > 500) ? 26 : 20,
+                                        titleFontSize:
+                                            (screenSize.width > 500) ? 44 : 26,
+                                        paragraphFontSize:
+                                            (screenSize.width > 500) ? 26 : 20,
                                       ),
                                     ],
                                   ),
@@ -257,10 +286,13 @@ class SlidingGallery extends StatefulWidget {
 class _SlidingGalleryState extends State<SlidingGallery> {
   late final PageController _pageController;
   final List<String> imagePaths = [
-    'assets/images/content/IMG_9191.JPG',
-    'assets/images/content/IMG_9188.JPG',
-    'assets/images/content/IMG_0611.JPG',
-    'assets/images/content/IMG_0608.JPG',
+    'assets/images/activity-photos/E1.jpg',
+    'assets/images/activity-photos/E2.jpg',
+    'assets/images/activity-photos/E3.jpg',
+    'assets/images/activity-photos/E4.jpg',
+    'assets/images/activity-photos/E5.jpg',
+    'assets/images/activity-photos/E6.jpg',
+    'assets/images/activity-photos/E7.jpg',
   ];
   int _currentPage = 0;
   Timer? _timer;
@@ -309,7 +341,7 @@ class _SlidingGalleryState extends State<SlidingGallery> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 525,
+      height: 600,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -375,13 +407,12 @@ class _MissionItem extends StatelessWidget {
   final double titleFontSize;
   final double paragraphFontSize;
 
-  const _MissionItem({
-    required this.icon,
-    required this.title,
-    required this.description,
-    required this.titleFontSize,
-    required this.paragraphFontSize
-  });
+  const _MissionItem(
+      {required this.icon,
+      required this.title,
+      required this.description,
+      required this.titleFontSize,
+      required this.paragraphFontSize});
 
   @override
   Widget build(BuildContext context) {
@@ -430,7 +461,7 @@ class _MissionItem extends StatelessWidget {
                 fontSize: paragraphFontSize,
                 fontFamily: 'Kepler',
                 fontWeight: FontWeight.w600,
-                color: Colors.black87,
+                // color: Colors.black87,
                 height: 1.5,
               ),
             ),

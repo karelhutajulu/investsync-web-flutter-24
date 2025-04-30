@@ -72,8 +72,9 @@ flutter:
   assets:
     - assets/logos/
     - assets/images/content/
-    - assets/images/photos/
+    - assets/images/misc/
     - assets/images/board-members/
+    - assets/images/activity-photos/
     - assets/images/
     - assets/icons/
     - assets/icons/finalgyat.svg
