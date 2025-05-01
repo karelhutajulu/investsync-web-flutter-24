@@ -43,6 +43,7 @@ class _DesktopTeamPageState extends State<DesktopTeamPage> {
 
   List<List<TeamMember>> rowsForBOD = chunkList(boardOfDirectors, 3);
   List<List<TeamMember>> rowsForIT = chunkList(investmentTeam, 3);
+  List<List<TeamMember>> rowsForPast = chunkList(pastMembers, 3);
 
   @override
   void initState() {
@@ -85,6 +86,13 @@ class _DesktopTeamPageState extends State<DesktopTeamPage> {
                       memCardWidth: 375,
                       memCardHeight: 400,
                       memCardNameFontSize: 24),
+                  TeamSection(
+                      title: "PAST TEAM MEMBERS",
+                      titleFontSize: 49,
+                      rows: rowsForPast,
+                      memCardWidth: 375,
+                      memCardHeight: 400,
+                      memCardNameFontSize: 24),
                   BottomNav(),
                 ],
               ),
@@ -110,6 +118,7 @@ class TabletTeamPage extends StatelessWidget {
 
     List<List<TeamMember>> rowsForBOD = chunkList(boardOfDirectors, 2);
     List<List<TeamMember>> rowsForIT = chunkList(investmentTeam, 2);
+    List<List<TeamMember>> rowsForPast = chunkList(pastMembers, 2);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -133,6 +142,13 @@ class TabletTeamPage extends StatelessWidget {
                       title: "INVESTMENT TEAM",
                       titleFontSize: 46,
                       rows: rowsForIT,
+                      memCardWidth: 375,
+                      memCardHeight: 400,
+                      memCardNameFontSize: 24),
+                  TeamSection(
+                      title: "PAST TEAM MEMBERS",
+                      titleFontSize: 46,
+                      rows: rowsForPast,
                       memCardWidth: 375,
                       memCardHeight: 400,
                       memCardNameFontSize: 24),
@@ -161,6 +177,7 @@ class MobileTeamPage extends StatelessWidget {
 
     List<List<TeamMember>> rowsForBOD = chunkList(boardOfDirectors, 1);
     List<List<TeamMember>> rowsForIT = chunkList(investmentTeam, 1);
+    List<List<TeamMember>> rowsForPast = chunkList(pastMembers, 1);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -184,6 +201,13 @@ class MobileTeamPage extends StatelessWidget {
                       title: "INVESTMENT TEAM",
                       titleFontSize: 44,
                       rows: rowsForIT,
+                      memCardWidth: 275,
+                      memCardHeight: 300,
+                      memCardNameFontSize: 20),
+                  TeamSection(
+                      title: "PAST TEAM MEMBERS",
+                      titleFontSize: 44,
+                      rows: rowsForPast,
                       memCardWidth: 275,
                       memCardHeight: 300,
                       memCardNameFontSize: 20),

@@ -161,20 +161,6 @@ final List<TeamMember> boardOfDirectors = [
     emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=jocelynwu153@gmail.com&tf=cm",
     linkedInLink: "https://www.linkedin.com/in/eugenia-jocelyn-budiono-507b9a270",
   ),
-  TeamMember(
-    name: "William A. Tanex",
-    role: "Past Vice-President",
-    imagePath: "",
-    emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=alexandertanex@gmail.com&tf=cm",
-    linkedInLink: "https://www.linkedin.com/in/william-alexander-tanex",
-  ),
-  TeamMember(
-    name: "Kim Kyungrok",
-    role: "Past Market Analyst",
-    imagePath: "",
-    emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=ksktkr10@gmail.com&tf=cm",
-    linkedInLink: "https://www.linkedin.com/in/kyungrok-kim-a9510b29a",
-  ),
 ];
 
 
@@ -241,5 +227,22 @@ final List<TeamMember> investmentTeam = [
     imagePath: "assets/images/board-members/CCC.jpg",
     emailLink: "",
     linkedInLink: "",
+  ),
+];
+
+final List<TeamMember> pastMembers = [
+    TeamMember(
+    name: "William A. Tanex",
+    role: "Past Vice-President",
+    imagePath: "",
+    emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=alexandertanex@gmail.com&tf=cm",
+    linkedInLink: "https://www.linkedin.com/in/william-alexander-tanex",
+  ),
+  TeamMember(
+    name: "Kim Kyungrok",
+    role: "Past Market Analyst",
+    imagePath: "",
+    emailLink: "https://mail.google.com/mail/u/0/?fs=1&to=ksktkr10@gmail.com&tf=cm",
+    linkedInLink: "https://www.linkedin.com/in/kyungrok-kim-a9510b29a",
   ),
 ];
